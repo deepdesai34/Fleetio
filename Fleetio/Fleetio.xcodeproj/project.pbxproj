@@ -12,6 +12,9 @@
 		7332A3332921A54800637D2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3322921A54800637D2C /* MainViewController.swift */; };
 		7332A3382921A54A00637D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7332A3372921A54A00637D2C /* Assets.xcassets */; };
 		7332A33B2921A54A00637D2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7332A3392921A54A00637D2C /* LaunchScreen.storyboard */; };
+		7332A3442921AAC300637D2C /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3432921AAC300637D2C /* Vehicle.swift */; };
+		7332A3472921B40200637D2C /* ApiElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3462921B40200637D2C /* ApiElements.swift */; };
+		7332A34A2921B9BF00637D2C /* VehicleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3492921B9BF00637D2C /* VehicleService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		7332A3372921A54A00637D2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7332A33A2921A54A00637D2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7332A33C2921A54A00637D2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7332A3432921AAC300637D2C /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		7332A3462921B40200637D2C /* ApiElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiElements.swift; sourceTree = "<group>"; };
+		7332A3492921B9BF00637D2C /* VehicleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,41 @@
 		7332A32D2921A54800637D2C /* Fleetio */ = {
 			isa = PBXGroup;
 			children = (
+				7332A3322921A54800637D2C /* MainViewController.swift */,
+				7332A3492921B9BF00637D2C /* VehicleService.swift */,
+				7332A3422921AAB100637D2C /* Models */,
+				7332A3482921B83000637D2C /* Views */,
+				7332A3452921B3EB00637D2C /* API */,
 				7332A32E2921A54800637D2C /* AppDelegate.swift */,
 				7332A3302921A54800637D2C /* SceneDelegate.swift */,
-				7332A3322921A54800637D2C /* MainViewController.swift */,
 				7332A3372921A54A00637D2C /* Assets.xcassets */,
 				7332A3392921A54A00637D2C /* LaunchScreen.storyboard */,
 				7332A33C2921A54A00637D2C /* Info.plist */,
 			);
 			path = Fleetio;
+			sourceTree = "<group>";
+		};
+		7332A3422921AAB100637D2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7332A3432921AAC300637D2C /* Vehicle.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7332A3452921B3EB00637D2C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7332A3462921B40200637D2C /* ApiElements.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7332A3482921B83000637D2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7332A34A2921B9BF00637D2C /* VehicleService.swift in Sources */,
+				7332A3442921AAC300637D2C /* Vehicle.swift in Sources */,
 				7332A3332921A54800637D2C /* MainViewController.swift in Sources */,
+				7332A3472921B40200637D2C /* ApiElements.swift in Sources */,
 				7332A32F2921A54800637D2C /* AppDelegate.swift in Sources */,
 				7332A3312921A54800637D2C /* SceneDelegate.swift in Sources */,
 			);
