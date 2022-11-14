@@ -2,11 +2,10 @@
 //  Vehicle.swift
 //  Fleetio
 //
-//  Created by Deep Desai on 2022-11-13.
+//  Created by Deep Desai on 2022-11-14.
 //
 
 import Foundation
-
 
 // MARK: - VehicleElement
 class Vehicle: Codable {

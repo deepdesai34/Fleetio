@@ -8,7 +8,7 @@
 import Foundation
 
 
-class VehicleViewModel {
+class MainViewModel {
     
     
     func getVehicles(completion: @escaping ([Vehicle]) ->()) {
@@ -34,8 +34,6 @@ class VehicleViewModel {
             } catch {
                 print(String(describing: error))
             }
-            
-            
             
         }).resume()
         

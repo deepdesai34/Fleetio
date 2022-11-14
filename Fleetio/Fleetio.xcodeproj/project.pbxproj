@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7332A32F2921A54800637D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A32E2921A54800637D2C /* AppDelegate.swift */; };
-		7332A3312921A54800637D2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3302921A54800637D2C /* SceneDelegate.swift */; };
-		7332A3332921A54800637D2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3322921A54800637D2C /* MainViewController.swift */; };
-		7332A3382921A54A00637D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7332A3372921A54A00637D2C /* Assets.xcassets */; };
-		7332A33B2921A54A00637D2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7332A3392921A54A00637D2C /* LaunchScreen.storyboard */; };
-		7332A3442921AAC300637D2C /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3432921AAC300637D2C /* Vehicle.swift */; };
-		7332A3472921B40200637D2C /* ApiElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3462921B40200637D2C /* ApiElements.swift */; };
-		7332A34A2921B9BF00637D2C /* VehicleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332A3492921B9BF00637D2C /* VehicleViewModel.swift */; };
+		7333BDB72921FF6400A789F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDB62921FF6400A789F1 /* AppDelegate.swift */; };
+		7333BDB92921FF6400A789F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDB82921FF6400A789F1 /* SceneDelegate.swift */; };
+		7333BDBB2921FF6400A789F1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDBA2921FF6400A789F1 /* MainViewController.swift */; };
+		7333BDC02921FF6500A789F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7333BDBF2921FF6500A789F1 /* Assets.xcassets */; };
+		7333BDC32921FF6500A789F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7333BDC12921FF6500A789F1 /* LaunchScreen.storyboard */; };
+		7333BDCE292203E300A789F1 /* ApiElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDCD292203E300A789F1 /* ApiElements.swift */; };
+		7333BDD02922048600A789F1 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDCF2922048600A789F1 /* Vehicle.swift */; };
+		734A72DD292204F1006327CC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734A72DC292204F1006327CC /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7332A32B2921A54800637D2C /* Fleetio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7332A32E2921A54800637D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7332A3302921A54800637D2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7332A3322921A54800637D2C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		7332A3372921A54A00637D2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7332A33A2921A54A00637D2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7332A33C2921A54A00637D2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7332A3432921AAC300637D2C /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
-		7332A3462921B40200637D2C /* ApiElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiElements.swift; sourceTree = "<group>"; };
-		7332A3492921B9BF00637D2C /* VehicleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewModel.swift; sourceTree = "<group>"; };
+		7333BDB32921FF6400A789F1 /* Fleetio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7333BDB62921FF6400A789F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7333BDB82921FF6400A789F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7333BDBA2921FF6400A789F1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7333BDBF2921FF6500A789F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7333BDC22921FF6500A789F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7333BDC42921FF6500A789F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7333BDCD292203E300A789F1 /* ApiElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiElements.swift; sourceTree = "<group>"; };
+		7333BDCF2922048600A789F1 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		734A72DC292204F1006327CC /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7332A3282921A54800637D2C /* Frameworks */ = {
+		7333BDB02921FF6400A789F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,80 +41,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7332A3222921A54800637D2C = {
+		7333BDAA2921FF6400A789F1 = {
 			isa = PBXGroup;
 			children = (
-				7332A32D2921A54800637D2C /* Fleetio */,
-				7332A32C2921A54800637D2C /* Products */,
+				7333BDB52921FF6400A789F1 /* Fleetio */,
+				7333BDB42921FF6400A789F1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7332A32C2921A54800637D2C /* Products */ = {
+		7333BDB42921FF6400A789F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7332A32B2921A54800637D2C /* Fleetio.app */,
+				7333BDB32921FF6400A789F1 /* Fleetio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7332A32D2921A54800637D2C /* Fleetio */ = {
+		7333BDB52921FF6400A789F1 /* Fleetio */ = {
 			isa = PBXGroup;
 			children = (
-				7332A34B2921E09C00637D2C /* ViewModels */,
-				7332A3322921A54800637D2C /* MainViewController.swift */,
-				7332A3422921AAB100637D2C /* Models */,
-				7332A3482921B83000637D2C /* Views */,
-				7332A3452921B3EB00637D2C /* API */,
-				7332A32E2921A54800637D2C /* AppDelegate.swift */,
-				7332A3302921A54800637D2C /* SceneDelegate.swift */,
-				7332A3372921A54A00637D2C /* Assets.xcassets */,
-				7332A3392921A54A00637D2C /* LaunchScreen.storyboard */,
-				7332A33C2921A54A00637D2C /* Info.plist */,
+				7333BDBA2921FF6400A789F1 /* MainViewController.swift */,
+				7333BDCB2921FFAF00A789F1 /* ViewModels */,
+				7333BDCA2921FFA900A789F1 /* Models */,
+				7333BDCC292203B700A789F1 /* API */,
+				7333BDB82921FF6400A789F1 /* SceneDelegate.swift */,
+				7333BDB62921FF6400A789F1 /* AppDelegate.swift */,
+				7333BDBF2921FF6500A789F1 /* Assets.xcassets */,
+				7333BDC12921FF6500A789F1 /* LaunchScreen.storyboard */,
+				7333BDC42921FF6500A789F1 /* Info.plist */,
 			);
 			path = Fleetio;
 			sourceTree = "<group>";
 		};
-		7332A3422921AAB100637D2C /* Models */ = {
+		7333BDCA2921FFA900A789F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7332A3432921AAC300637D2C /* Vehicle.swift */,
+				7333BDCF2922048600A789F1 /* Vehicle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7332A3452921B3EB00637D2C /* API */ = {
+		7333BDCB2921FFAF00A789F1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7332A3462921B40200637D2C /* ApiElements.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		7332A3482921B83000637D2C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7332A34B2921E09C00637D2C /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				7332A3492921B9BF00637D2C /* VehicleViewModel.swift */,
+				734A72DC292204F1006327CC /* MainViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7333BDCC292203B700A789F1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7333BDCD292203E300A789F1 /* ApiElements.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7332A32A2921A54800637D2C /* Fleetio */ = {
+		7333BDB22921FF6400A789F1 /* Fleetio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7332A33F2921A54A00637D2C /* Build configuration list for PBXNativeTarget "Fleetio" */;
+			buildConfigurationList = 7333BDC72921FF6500A789F1 /* Build configuration list for PBXNativeTarget "Fleetio" */;
 			buildPhases = (
-				7332A3272921A54800637D2C /* Sources */,
-				7332A3282921A54800637D2C /* Frameworks */,
-				7332A3292921A54800637D2C /* Resources */,
+				7333BDAF2921FF6400A789F1 /* Sources */,
+				7333BDB02921FF6400A789F1 /* Frameworks */,
+				7333BDB12921FF6400A789F1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -122,25 +114,25 @@
 			);
 			name = Fleetio;
 			productName = Fleetio;
-			productReference = 7332A32B2921A54800637D2C /* Fleetio.app */;
+			productReference = 7333BDB32921FF6400A789F1 /* Fleetio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7332A3232921A54800637D2C /* Project object */ = {
+		7333BDAB2921FF6400A789F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
-					7332A32A2921A54800637D2C = {
+					7333BDB22921FF6400A789F1 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
-			buildConfigurationList = 7332A3262921A54800637D2C /* Build configuration list for PBXProject "Fleetio" */;
+			buildConfigurationList = 7333BDAE2921FF6400A789F1 /* Build configuration list for PBXProject "Fleetio" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,49 +140,49 @@
 				en,
 				Base,
 			);
-			mainGroup = 7332A3222921A54800637D2C;
-			productRefGroup = 7332A32C2921A54800637D2C /* Products */;
+			mainGroup = 7333BDAA2921FF6400A789F1;
+			productRefGroup = 7333BDB42921FF6400A789F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7332A32A2921A54800637D2C /* Fleetio */,
+				7333BDB22921FF6400A789F1 /* Fleetio */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7332A3292921A54800637D2C /* Resources */ = {
+		7333BDB12921FF6400A789F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7332A33B2921A54A00637D2C /* LaunchScreen.storyboard in Resources */,
-				7332A3382921A54A00637D2C /* Assets.xcassets in Resources */,
+				7333BDC32921FF6500A789F1 /* LaunchScreen.storyboard in Resources */,
+				7333BDC02921FF6500A789F1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7332A3272921A54800637D2C /* Sources */ = {
+		7333BDAF2921FF6400A789F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7332A34A2921B9BF00637D2C /* VehicleViewModel.swift in Sources */,
-				7332A3442921AAC300637D2C /* Vehicle.swift in Sources */,
-				7332A3332921A54800637D2C /* MainViewController.swift in Sources */,
-				7332A3472921B40200637D2C /* ApiElements.swift in Sources */,
-				7332A32F2921A54800637D2C /* AppDelegate.swift in Sources */,
-				7332A3312921A54800637D2C /* SceneDelegate.swift in Sources */,
+				7333BDBB2921FF6400A789F1 /* MainViewController.swift in Sources */,
+				7333BDB72921FF6400A789F1 /* AppDelegate.swift in Sources */,
+				7333BDB92921FF6400A789F1 /* SceneDelegate.swift in Sources */,
+				7333BDD02922048600A789F1 /* Vehicle.swift in Sources */,
+				7333BDCE292203E300A789F1 /* ApiElements.swift in Sources */,
+				734A72DD292204F1006327CC /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7332A3392921A54A00637D2C /* LaunchScreen.storyboard */ = {
+		7333BDC12921FF6500A789F1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7332A33A2921A54A00637D2C /* Base */,
+				7333BDC22921FF6500A789F1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -198,7 +190,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7332A33D2921A54A00637D2C /* Debug */ = {
+		7333BDC52921FF6500A789F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -258,7 +250,7 @@
 			};
 			name = Debug;
 		};
-		7332A33E2921A54A00637D2C /* Release */ = {
+		7333BDC62921FF6500A789F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -312,7 +304,7 @@
 			};
 			name = Release;
 		};
-		7332A3402921A54A00637D2C /* Debug */ = {
+		7333BDC82921FF6500A789F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -326,7 +318,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -340,7 +331,7 @@
 			};
 			name = Debug;
 		};
-		7332A3412921A54A00637D2C /* Release */ = {
+		7333BDC92921FF6500A789F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -354,7 +345,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,25 +361,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7332A3262921A54800637D2C /* Build configuration list for PBXProject "Fleetio" */ = {
+		7333BDAE2921FF6400A789F1 /* Build configuration list for PBXProject "Fleetio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7332A33D2921A54A00637D2C /* Debug */,
-				7332A33E2921A54A00637D2C /* Release */,
+				7333BDC52921FF6500A789F1 /* Debug */,
+				7333BDC62921FF6500A789F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7332A33F2921A54A00637D2C /* Build configuration list for PBXNativeTarget "Fleetio" */ = {
+		7333BDC72921FF6500A789F1 /* Build configuration list for PBXNativeTarget "Fleetio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7332A3402921A54A00637D2C /* Debug */,
-				7332A3412921A54A00637D2C /* Release */,
+				7333BDC82921FF6500A789F1 /* Debug */,
+				7333BDC92921FF6500A789F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7332A3232921A54800637D2C /* Project object */;
+	rootObject = 7333BDAB2921FF6400A789F1 /* Project object */;
 }
