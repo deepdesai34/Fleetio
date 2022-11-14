@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - VehicleElement
-struct VehicleAssets: Codable {
+class Vehicle: Codable {
     let id, accountID: Int
     let archivedAt: Date?
     let fuelTypeID: Int?

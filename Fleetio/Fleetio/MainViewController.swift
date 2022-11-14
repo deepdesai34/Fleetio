@@ -9,13 +9,26 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    let vehicleVM = VehicleViewModel()
+    var vehicles = [Vehicle]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVMData()
+        configureViews()
         
-        let vehicleService = VehicleService()
         
-        vehicleService.getVehicles()
+        
     }
     
+    func configureVMData() {
+        vehicleVM.getVehicles { newVehicles in
+            self.vehicles = newVehicles
+        }
+    }
     
+    func configureViews() {
+        
+    }
+
 }

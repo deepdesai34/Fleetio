@@ -16,9 +16,9 @@ struct ApiElements {
     
     func getMutableRequest(section: String) -> NSMutableURLRequest {
         
-    guard let url = NSURL(string: "https://secure.fleetio.com/api/v1/\(section)") as? URL else { return NSMutableURLRequest() }
+        guard let url = NSURL(string: "https://secure.fleetio.com/api/v1/\(section)") as? URL else { return NSMutableURLRequest() }
         
-      return NSMutableURLRequest(url:  url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        return NSMutableURLRequest(url:  url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
     }
 }
-   
+

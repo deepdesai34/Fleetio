@@ -8,9 +8,10 @@
 import Foundation
 
 
-class VehicleService {
+class VehicleViewModel {
     
-    func getVehicles() {
+    
+    func getVehicles(completion: @escaping ([Vehicle]) ->()) {
         let apiElements = ApiElements()
         
         let request = apiElements.getMutableRequest(section: "vehicles")
@@ -23,19 +24,21 @@ class VehicleService {
                 return
             }
             
-            var vehicleResponse: [VehicleAssets]?
+            var vehicleResponse: [Vehicle]?
             
             do {
-                vehicleResponse = try JSONDecoder().decode([VehicleAssets].self, from: vehicleData)
+                vehicleResponse = try JSONDecoder().decode([Vehicle].self, from: vehicleData)
+                guard let finalvehicleResponse = vehicleResponse else { return }
+                
+                completion(finalvehicleResponse)
             } catch {
                 print(String(describing: error))
             }
-
-            guard let finalvehicleResponse = vehicleResponse else { return }
-
-            print(finalvehicleResponse[9].make)
+            
+            
             
         }).resume()
+        
     }
     
 }
