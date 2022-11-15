@@ -18,5 +18,4 @@ extension UIView {
             self.trailingAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
-    
 }

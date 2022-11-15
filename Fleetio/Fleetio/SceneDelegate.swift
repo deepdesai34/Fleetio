@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //fitting window to the size of the screen & setting rootview controller
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = VehicleViewController()
         window?.makeKeyAndVisible()
         window?.overrideUserInterfaceStyle = .light
     }
