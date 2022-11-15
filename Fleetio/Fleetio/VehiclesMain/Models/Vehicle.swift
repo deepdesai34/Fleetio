@@ -66,7 +66,7 @@ class Vehicle: Codable {
     let currentLocationEntry: CurrentLocationEntry
     let loanAmount, loanPayment: Double?
     let residualValue: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case accountID = "account_id"
@@ -164,7 +164,7 @@ struct CurrentLocationEntry: Codable {
     let location: String?
     let addressComponents: AddressComponents?
     let geolocation: Geolocation?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case locatableType = "locatable_type"
@@ -191,7 +191,7 @@ struct AddressComponents: Codable {
     let country: Country?
     let countryShort: CountryShort?
     let postalCode: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case streetNumber = "street_number"
         case street, city, region
@@ -235,7 +235,7 @@ struct CustomFields: Codable {
     let test: String
     let checkboxFilterTest, manufacturerModel: String?
     let extraRextraReadAllAboutItThisIsASuperLongFieldNameMyGuyyy: String
-
+    
     enum CodingKeys: String, CodingKey {
         case telematicsSubscription = "telematics_subscription"
         case restrict
@@ -273,7 +273,7 @@ struct Driver: Codable {
     let lastName: String?
     let fullName: String?
     let defaultImageURL: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case firstName = "first_name"
@@ -287,7 +287,7 @@ struct Driver: Codable {
 struct EstimatedResalePrice: Codable {
     let cents: Int
     let currencyISO: CurrencyISO
-
+    
     enum CodingKeys: String, CodingKey {
         case cents
         case currencyISO = "currency_iso"
@@ -302,7 +302,7 @@ enum CurrencyISO: String, Codable {
 struct ExternalIDS: Codable {
     let clearpathgps, externalFuelID, fuelID, taskCode: String?
     let traxxisID: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case clearpathgps
         case externalFuelID = "external_fuel_id"
@@ -392,7 +392,7 @@ struct Specs: Codable {
     let createdAt, updatedAt: String?
     let dutyType, weightClass: String?
     let msrp: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case engineBoreWithUnits = "engine_bore_with_units"
         case wheelbaseWithUnits = "wheelbase_with_units"

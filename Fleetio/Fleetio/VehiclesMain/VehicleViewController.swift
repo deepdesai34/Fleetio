@@ -9,11 +9,17 @@ import UIKit
 
 class VehicleViewController: UIViewController {
     
-    
+    //VMs
     let mainVM = MainViewModel()
+    
+    //Objects
     var vehicles = [Vehicle]()
+    var searchedVehicle = [Vehicle]()
     
+    //Variables
+    var searching: Bool = false
     
+    //UI Variables
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +29,7 @@ class VehicleViewController: UIViewController {
         return label
     }()
     
-    let vehicleSearchController: UISearchBar = {
+    let vehicleSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,13 +65,15 @@ class VehicleViewController: UIViewController {
         view.addSubview(titleLabel)
         
         //SearchBar
-        view.addSubview(vehicleSearchController)
-        
+        view.addSubview(vehicleSearchBar)
+        vehicleSearchBar.delegate = self
+    
         // TableView
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
+        
         
     }
     
@@ -77,24 +85,24 @@ class VehicleViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-           // titleLabel.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.topAnchor)
+            // titleLabel.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.topAnchor)
         ])
         
         //SearchBar
         NSLayoutConstraint.activate([
-            vehicleSearchController.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            vehicleSearchController.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            vehicleSearchController.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            vehicleSearchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            vehicleSearchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            vehicleSearchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
         ])
         
         //TableView
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: vehicleSearchController.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: vehicleSearchController.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: vehicleSearchController.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: vehicleSearchBar.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: vehicleSearchBar.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: vehicleSearchBar.safeAreaLayoutGuide.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-
+        
     }
     
     func configureVMData() {
@@ -112,27 +120,18 @@ class VehicleViewController: UIViewController {
 extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        view.layer.cornerRadius = 5
-//
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.font = UIFont(name: "Courier-BoldOblique", size: 25)
-//        label.textColor = .white
-//
-//
-//        label.text = vehicles[section].name
-//        view.addSubview(label)
-//
-//        NSLayoutConstraint.activate([
-//            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//        ])
-        
         let vehicleView = VehicleHeader()
+        let vehicleVM: VehicleHeaderViewModel?
         
-        let vehicleVM = VehicleHeaderViewModel(vehicleName:vehicles[section].name)
-        vehicleView.setup(viewModel: vehicleVM)
-
+        if !(searching && vehicleSearchBar.text != "") {
+            vehicleVM = VehicleHeaderViewModel(vehicleName: vehicles[section].name)
+        } else {
+            vehicleVM = VehicleHeaderViewModel(vehicleName: searchedVehicle[section].name)
+        }
+        
+        guard let vehcileViewModel = vehicleVM else { return UIView() }
+        vehicleView.setup(viewModel: vehcileViewModel)
+        
         return vehicleView
     }
     
@@ -141,7 +140,12 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return vehicles.count
+        if !(searching && vehicleSearchBar.text != "") {
+            return vehicles.count
+        } else {
+            return searchedVehicle.count
+            
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -151,7 +155,6 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         var configuration = cell.defaultContentConfiguration()
-        
         
         
         switch indexPath.row {
@@ -168,9 +171,9 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
             
             configuration.text = vehicles[indexPath.section].make
             //let vehicleImageView = UIImageView()
-          //  guard let url = URL(string: vehicles[indexPath.section].defaultImageURL) else { return "" }
+            //  guard let url = URL(string: vehicles[indexPath.section].defaultImageURL) else { return "" }
             
-           // configuration.image?.load(url: url)
+            // configuration.image?.load(url: url)
             
         case 3:
             configuration.text = vehicles[indexPath.section].make
@@ -187,5 +190,13 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
+// Search Functionality
+extension VehicleViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchedVehicle = vehicles.filter({ $0.name.contains(searchText) })
+        searching = true
+        tableView.reloadData()
+    }
+}
 
 
