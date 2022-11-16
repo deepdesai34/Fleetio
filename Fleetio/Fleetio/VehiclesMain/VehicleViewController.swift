@@ -51,6 +51,14 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainVM.getHeaderDetails(completion: { currentPage, totalPages in
+            self.mainVM.currentPage = currentPage
+            self.mainVM.totalPages = totalPages
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
         configureViews()
         configureConstraints()
         
@@ -177,9 +185,16 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 return
             }
             
-            self.tableView.tableFooterView = createFooterSpinner()
+            if self.mainVM.currentPage < self.mainVM.totalPages {
+                self.tableView.tableFooterView = createFooterSpinner()
+            } else {
+                self.tableView.tableFooterView = nil
+            }
+            
             
             configureVMFetch(pagination: true)
+            
+           
             
         }
     }

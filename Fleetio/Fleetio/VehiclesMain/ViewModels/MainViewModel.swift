@@ -11,6 +11,8 @@ import Foundation
 class MainViewModel {
     
     var isPaginating: Bool = false
+    var currentPage: Int = 0
+    var totalPages: Int = 0
     
     
     
@@ -21,16 +23,17 @@ class MainViewModel {
         if pagination {
             isPaginating = true
         }
-        
-        getHeaderDetails(completion: { currentPage, totalPages in
             
+            if self.isPaginating && self.currentPage <= totalPages {
+                self.currentPage += 1
+            }
             DispatchQueue.global().asyncAfter(deadline: .now() + (pagination ? 3:2), execute: { [self] in
                 
-                getVehicles(i: currentPage, completion: { [self] oldVehicles in
+                getVehicles(i: self.currentPage, completion: { [self] oldVehicles in
                     originalData = oldVehicles
                     
-                    if ((currentPage + 1) <= totalPages) && isPaginating {
-                        self.getVehicles(i: currentPage + 1, completion: { newVehicles in
+                    if ((currentPage) <= totalPages) && isPaginating {
+                        self.getVehicles(i: self.currentPage, completion: { newVehicles in
                             newData = newVehicles
                             completion(.success(pagination ? newData : originalData))
                         })
@@ -44,13 +47,13 @@ class MainViewModel {
                 })
             })
             
-        })
+        
         
         
     }
     
     
-    private func getHeaderDetails(completion: @escaping (Int, Int) -> ()) {
+    func getHeaderDetails(completion: @escaping (Int, Int) -> ()) {
         let apiElements = ApiManager()
         
         let request = apiElements.getMutableRequest(section: "vehicles")
