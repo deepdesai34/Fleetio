@@ -27,9 +27,9 @@ class MainViewModel {
             if self.isPaginating && self.currentPage <= totalPages {
                 self.currentPage += 1
             }
-            DispatchQueue.global().asyncAfter(deadline: .now() + (pagination ? 3:2), execute: { [self] in
+            DispatchQueue.global().asyncAfter(deadline: .now(), execute: { [self] in
                 
-                getVehicles(i: self.currentPage, completion: { [self] oldVehicles in
+                getVehicles(i: self.currentPage, completion: { oldVehicles in
                     originalData = oldVehicles
                     
                     if ((currentPage) <= totalPages) && isPaginating {

@@ -79,7 +79,7 @@ class VehicleViewController: UIViewController {
         //SearchBar
         view.addSubview(vehicleSearchBar)
         vehicleSearchBar.delegate = self
-    
+        
         // TableView
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -137,7 +137,7 @@ class VehicleViewController: UIViewController {
 extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        
         if !(searching && vehicleSearchBar.text != "") {
             return vehicles.count
         } else {
@@ -191,14 +191,11 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.tableView.tableFooterView = nil
             }
             
-            
             configureVMFetch(pagination: true)
-            
-           
             
         }
     }
-
+    
 }
 
 // Search Functionality
@@ -209,7 +206,7 @@ extension VehicleViewController: UISearchBarDelegate {
         searchedVehicle = vehicles.filter({
             var isThere: Bool?
             if let name = $0.name {
-               isThere = name.contains(searchText)
+                isThere = name.contains(searchText)
             }
             return isThere ?? false
         })
