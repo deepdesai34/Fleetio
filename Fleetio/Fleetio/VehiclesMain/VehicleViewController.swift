@@ -24,6 +24,7 @@ class VehicleViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.roundedTitleFont(ofSize: 30, weight: .bold)
+        label.textColor = .fleetioGreen
         label.text = "Vehicles"
         
         return label
@@ -42,6 +43,7 @@ class VehicleViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
+        table.separatorColor = .fleetioGreen
         table.sectionIndexColor = .black
         table.tableFooterView?.isHidden = true
         
