@@ -57,6 +57,24 @@ class VehicleViewController: UIViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        mainVM.fetchData(completion: { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.vehicles.append(contentsOf: data)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+               
+                
+            case .failure(_):
+                print("Failed to fetch data")
+            }
+        })
+    }
+    
     func configureViews() {
         //MainView
         view.backgroundColor = .white
@@ -107,12 +125,19 @@ class VehicleViewController: UIViewController {
     
     func configureVMData() {
         // Binding data for vehicles from viewModel
-        mainVM.getVehicles { newVehicles in
-            self.vehicles = newVehicles
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        mainVM.fetchData(completion: { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.vehicles.append(contentsOf: data)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+               
+                
+            case .failure(_):
+                print("Failed to fetch data")
             }
-        }
+        })
     }
 }
 
