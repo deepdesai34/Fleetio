@@ -9,12 +9,12 @@ import Foundation
 
 // MARK: - VehicleElement
 class Vehicle: Codable {
-    let id, accountID: Int?
+    let id, accountID: Double?
     let archivedAt: Date?
-    let fuelTypeID: Int?
+    let fuelTypeID: Double?
     let fuelTypeName: String?
     let fuelVolumeUnits: String?
-    let groupID: Int?
+    let groupID: Double?
     let groupName: String?
     let meterUnit: String?
     let name: String?
@@ -22,20 +22,20 @@ class Vehicle: Codable {
     let secondaryMeter: Bool?
     let secondaryMeterUnit: String?
     let systemOfMeasurement: String?
-    let vehicleStatusID: Int?
+    let vehicleStatusID: Double?
     let vehicleStatusName: String?
     let vehicleStatusColor: String?
-    let vehicleTypeID: Int?
+    let vehicleTypeID: Double?
     let vehicleTypeName: String?
-    let fuelEntriesCount, serviceEntriesCount, serviceRemindersCount, vehicleRenewalRemindersCount: Int?
-    let commentsCount, documentsCount, imagesCount: Int?
-    let currentLocationEntryID: Int?
+    let fuelEntriesCount, serviceEntriesCount, serviceRemindersCount, vehicleRenewalRemindersCount: Double?
+    let commentsCount, documentsCount, imagesCount: Double?
+    let currentLocationEntryID: Double?
     let isSample: Bool?
     let inServiceDate: String?
-    let inServiceMeter, estimatedServiceMonths, estimatedReplacementMileage: Int?
+    let inServiceMeter, estimatedServiceMonths, estimatedReplacementMileage: Double?
     let estimatedResalePrice: EstimatedResalePrice?
     let outOfServiceDate: String?
-    let outOfServiceMeter: Int?
+    let outOfServiceMeter: Double?
     let meterName: String?
     let secondaryMeterName: SecondaryMeterName
     let primaryMeterUsagePerDay, secondaryMeterUsagePerDay: String?
@@ -46,16 +46,16 @@ class Vehicle: Codable {
     let secondaryMeterDate: String?
     let groupAncestry: String?
     let color, licensePlate, make, model: String?
-    let registrationExpirationMonth: Int?
+    let registrationExpirationMonth: Double?
     let registrationState, trim, vin: String?
-    let year: Int?
+    let year: Double?
     let loanAccountNumber, loanEndedAt: String?
     let loanInterestRate: Double?
     let loanNotes, loanStartedAt: String?
-    let loanVendorID: Int?
+    let loanVendorID: Double?
     let loanVendorName: String?
     let customFields: CustomFields?
-    let inspectionSchedulesCount, issuesCount, workOrdersCount: Int?
+    let inspectionSchedulesCount, issuesCount, workOrdersCount: Double?
     let typeName: String?
     let defaultImageURL, defaultImageURLMedium, defaultImageURLSmall, defaultImageURLLarge: String?
     let driver: Driver?
@@ -65,7 +65,7 @@ class Vehicle: Codable {
     let assetableType: String?
     let currentLocationEntry: CurrentLocationEntry?
     let loanAmount, loanPayment: Double?
-    let residualValue: Int?
+    let residualValue: Double?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -148,15 +148,15 @@ class Vehicle: Codable {
 
 // MARK: - CurrentLocationEntry
 struct CurrentLocationEntry: Codable {
-    let id: Int?
+    let id: Double?
     let locatableType: LocatableType?
-    let locatableID: Int?
+    let locatableID: Double?
     let date, createdAt, updatedAt: String?
-    let contactID: Int?
+    let contactID: Double?
     let address: String?
     let isCurrent: Bool?
     let itemType: String?
-    let itemID, vehicleID: Int?
+    let itemID, vehicleID: Double?
     let location: String?
     let addressComponents: AddressComponents?
     let geolocation: Geolocation?
@@ -245,7 +245,7 @@ enum TelematicsSubscription: String, Codable {
 
 // MARK: - Driver
 struct Driver: Codable {
-    let id: Int?
+    let id: Double?
     let firstName: String?
     let lastName: String?
     let fullName: String?
@@ -262,7 +262,7 @@ struct Driver: Codable {
 
 // MARK: - EstimatedResalePrice
 struct EstimatedResalePrice: Codable {
-    let cents: Int?
+    let cents: Double?
     let currencyISO: String?
     
     enum CodingKeys: String, CodingKey {
@@ -293,22 +293,22 @@ enum SecondaryMeterName: String, Codable {
 // MARK: - Specs
 struct Specs: Codable {
     let engineBoreWithUnits, wheelbaseWithUnits: String?
-    let id, vehicleID, accountID: Int?
+    let id, vehicleID, accountID: Double?
     let bodyType: String?
     let bodySubtype: String?
     let driveType, brakeSystem: String?
-    let msrpCents: Int?
+    let msrpCents: Double?
     let fuelTankCapacity, fuelTank2_Capacity, frontTrackWidth, groundClearance: Double?
     let height, length, rearTrackWidth, width: Double?
     let wheelbase: Double?
-    let frontTirePsi, rearTirePsi, baseTowingCapacity: Int?
+    let frontTirePsi, rearTirePsi, baseTowingCapacity: Double?
     let curbWeight: Double?
-    let grossVehicleWeightRating: Int?
+    let grossVehicleWeightRating: Double?
     let bedLength: Double?
-    let maxPayload: Int?
+    let maxPayload: Double?
     let rearAxleType, frontTireType, frontWheelDiameter, rearTireType: String?
     let rearWheelDiameter: String?
-    let epaCity, epaHighway: Int?
+    let epaCity, epaHighway: Double?
     let epaCombined: Double?
     let engineDescription: String?
     let engineBrand: String?
@@ -317,21 +317,21 @@ struct Specs: Codable {
     let engineBore: Double?
     let engineCamType: String?
     let engineCompression: Double?
-    let engineCylinders: Int?
+    let engineCylinders: Double?
     let engineDisplacement: Double?
     let fuelInduction: String?
     let fuelQuality: String?
-    let maxHP, maxTorque: Int?
+    let maxHP, maxTorque: Double?
     let oilCapacity: Double?
     let redlineRPM: String?
     let engineStroke: Double?
-    let engineValves: Int?
+    let engineValves: Double?
     let transmissionDescription: String?
     let transmissionBrand: String?
     let transmissionType: String?
-    let transmissionGears: Int?
+    let transmissionGears: Double?
     let cargoVolume: Double?
-    let interiorVolume: Int?
+    let interiorVolume: Double?
     let passengerVolume: String?
     let createdAt, updatedAt: String?
     let dutyType, weightClass: String?

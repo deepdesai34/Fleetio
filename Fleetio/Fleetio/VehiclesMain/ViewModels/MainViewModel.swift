@@ -34,7 +34,7 @@ class MainViewModel {
             
             let apiElements = ApiManager()
             
-            let request = apiElements.getMutableRequest(section: "vehicles?page=5")
+            let request = apiElements.getMutableRequest(section: "vehicles?page=6")
             request.httpMethod = "GET"
             
             URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
