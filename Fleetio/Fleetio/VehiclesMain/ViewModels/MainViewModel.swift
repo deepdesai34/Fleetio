@@ -13,7 +13,6 @@ class MainViewModel {
     var isPaginating: Bool = false
     var currentPage: Int = 0
     var totalPages: Int = 0
-    var isRefreshing: Bool = false
     private var originalData = [Vehicle]()
     private var newData = [Vehicle]()
     private var apiManager: ApiManager?
@@ -39,7 +38,7 @@ class MainViewModel {
                     
                 }
                 
-
+                
                 completion(.success(pagination ? self.newData : self.originalData))
                 
                 if pagination {
@@ -77,13 +76,12 @@ class MainViewModel {
         apiManager = ApiManager()
         
         guard let apiMan = apiManager else { return }
-        
-        print(i)
+    
         let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)")
         request.httpMethod = "GET"
         
-       
-       var task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+        
+        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
             guard let vehicleData = data else {
                 return
@@ -102,7 +100,7 @@ class MainViewModel {
             }
             
         }).resume()
-    
+        
         
         
     }
