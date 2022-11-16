@@ -148,11 +148,19 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
 
 // Search Functionality
 extension VehicleViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        searchedVehicle = vehicles.filter({ $0.name?.contains(searchText) })
-//        searching = true
-//        tableView.reloadData()
-//    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchedVehicle = vehicles.filter({
+            var isThere: Bool?
+            if let name = $0.name {
+               isThere = name.contains(searchText)
+            }
+            return isThere ?? false
+        })
+        searching = true
+        tableView.reloadData()
+    }
 }
 
 
