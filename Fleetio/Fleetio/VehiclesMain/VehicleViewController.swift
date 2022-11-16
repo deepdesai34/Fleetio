@@ -111,7 +111,7 @@ class VehicleViewController: UIViewController {
         
     }
     
-    func configureVMFetch(pagination: Bool) {
+    func configureVMFetch(pagination: Bool, reloadData: Bool = true) {
         // Binding data for vehicles from viewModel
         mainVM.fetchData(pagination: pagination, completion: { result in
             switch result {
@@ -126,7 +126,11 @@ class VehicleViewController: UIViewController {
         })
     }
     
-    func bindHeaderDetails() {
+    func bindHeaderDetails(isRefresh: Bool = false) {
+        
+        if isRefresh {
+            self.mainVM.currentPage = 0
+        }
         mainVM.getHeaderDetails(completion: { currentPage, totalPages in
             self.mainVM.currentPage = currentPage
             self.mainVM.totalPages = totalPages
@@ -134,11 +138,16 @@ class VehicleViewController: UIViewController {
     }
     
     @objc func pullDownToRefresh() {
-        tableView.tableFooterView?.removeFromSuperview()
+        mainVM.isRefreshing = true
+        tableView.tableFooterView = nil
+        
         vehicles.removeAll()
-        bindHeaderDetails()
-        configureVMFetch(pagination: false)
-
+        searchedVehicle.removeAll()
+        tableView.setNeedsDisplay()
+        mainVM.resetData()
+        bindHeaderDetails(isRefresh: true)
+        configureVMFetch(pagination: false, reloadData: false)
+        tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
         
     }
@@ -177,6 +186,22 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return 30
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == vehicles.count {
+                guard !mainVM.isPaginating else {
+                    return
+                }
+
+                if self.mainVM.currentPage < self.mainVM.totalPages {
+                    self.tableView.tableFooterView = createFooterSpinner()
+                    configureVMFetch(pagination: true)
+                } else {
+                    self.tableView.tableFooterView = nil
+                }
+
+            }
+    }
+    
     private func createFooterSpinner() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         
@@ -189,21 +214,21 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return footerView
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        if position > (self.tableView.contentSize.height-100-scrollView.frame.size.height) {
-            guard !mainVM.isPaginating else {
-                return
-            }
-            
-            if self.mainVM.currentPage < self.mainVM.totalPages {
-                self.tableView.tableFooterView = createFooterSpinner()
-                configureVMFetch(pagination: true)
-            } else {
-                self.tableView.tableFooterView = nil
-            }
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let position = scrollView.contentOffset.y
+//        if position > (self.tableView.contentSize.height-100-scrollView.frame.size.height) {
+//            guard !mainVM.isPaginating else {
+//                return
+//            }
+//
+//            if self.mainVM.currentPage < self.mainVM.totalPages {
+//                self.tableView.tableFooterView = createFooterSpinner()
+//                configureVMFetch(pagination: true)
+//            } else {
+//                self.tableView.tableFooterView = nil
+//            }
+//        }
+//    }
     
 }
 

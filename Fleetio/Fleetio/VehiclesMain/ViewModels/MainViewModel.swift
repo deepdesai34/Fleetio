@@ -13,8 +13,10 @@ class MainViewModel {
     var isPaginating: Bool = false
     var currentPage: Int = 0
     var totalPages: Int = 0
-    var originalData = [Vehicle]()
-    var newData = [Vehicle]()
+    var isRefreshing: Bool = false
+    private var originalData = [Vehicle]()
+    private var newData = [Vehicle]()
+    private var apiManager: ApiManager?
     
     
     func fetchData(pagination: Bool = false, completion: @escaping (Result<[Vehicle], Error>) -> Void) {
@@ -33,10 +35,11 @@ class MainViewModel {
                 if ((self.currentPage) <= self.totalPages) && self.isPaginating {
                     self.getVehicles(i: self.currentPage, completion: { newVehicles in
                         self.newData = newVehicles
-                        completion(.success(pagination ? self.newData : self.originalData))
                     })
                     
                 }
+                
+
                 completion(.success(pagination ? self.newData : self.originalData))
                 
                 if pagination {
@@ -52,9 +55,10 @@ class MainViewModel {
     
     
     func getHeaderDetails(completion: @escaping (Int, Int) -> ()) {
-        let apiElements = ApiManager()
+        apiManager = ApiManager()
         
-        let request = apiElements.getMutableRequest(section: "vehicles")
+        guard let apiMan = apiManager else { return }
+        let request = apiMan.getMutableRequest(section: "vehicles")
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -70,11 +74,16 @@ class MainViewModel {
     
     
     private func getVehicles(i: Int, completion: @escaping ([Vehicle]) ->()) {
-        let apiElements = ApiManager()
-        let request = apiElements.getMutableRequest(section: "vehicles?page=\(i)")
+        apiManager = ApiManager()
+        
+        guard let apiMan = apiManager else { return }
+        
+        print(i)
+        let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)")
         request.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+       
+       var task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
             guard let vehicleData = data else {
                 return
@@ -93,6 +102,7 @@ class MainViewModel {
             }
             
         }).resume()
+    
         
         
     }
