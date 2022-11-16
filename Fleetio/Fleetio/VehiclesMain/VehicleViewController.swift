@@ -32,6 +32,7 @@ class VehicleViewController: UIViewController {
     let vehicleSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = "Search By Name"
         
         return searchBar
     }()
@@ -41,7 +42,6 @@ class VehicleViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
-        table.layer.cornerRadius = 10
         table.sectionIndexColor = .black
         table.tableFooterView?.isHidden = true
         
@@ -119,27 +119,8 @@ class VehicleViewController: UIViewController {
 // TableView Protocols
 extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let vehicleView = VehicleHeader()
-        let vehicleVM: VehicleHeaderViewModel?
-        
-        if !(searching && vehicleSearchBar.text != "") {
-            vehicleVM = VehicleHeaderViewModel(vehicleName: vehicles[section].name)
-        } else {
-            vehicleVM = VehicleHeaderViewModel(vehicleName: searchedVehicle[section].name)
-        }
-        
-        guard let vehcileViewModel = vehicleVM else { return UIView() }
-        vehicleView.setup(viewModel: vehcileViewModel)
-        
-        return vehicleView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         if !(searching && vehicleSearchBar.text != "") {
             return vehicles.count
         } else {
@@ -147,40 +128,15 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
             
         }
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         var configuration = cell.defaultContentConfiguration()
-        
-        
-        switch indexPath.row {
-        case 0:
-            
-            configuration.text = "Vehicle Make"
-            configuration.secondaryText = vehicles[indexPath.section].make
-            
-        case 1:
-            configuration.text = "Vehcile Name"
-            configuration.secondaryText = vehicles[indexPath.section].name
-            
-        case 2:
-            
-            configuration.text = vehicles[indexPath.section].make
-            //let vehicleImageView = UIImageView()
-            //  guard let url = URL(string: vehicles[indexPath.section].defaultImageURL) else { return "" }
-            
-            // configuration.image?.load(url: url)
-            
-        case 3:
-            configuration.text = vehicles[indexPath.section].make
-            
-        default:
-            configuration.text = ""
-            
+        if !(searching && vehicleSearchBar.text != "") {
+            configuration.text = vehicles[indexPath.row].name
+        } else {
+            configuration.text = searchedVehicle[indexPath.row].name
         }
         
         cell.contentConfiguration = configuration
@@ -192,11 +148,11 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
 
 // Search Functionality
 extension VehicleViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchedVehicle = vehicles.filter({ $0.name.contains(searchText) })
-        searching = true
-        tableView.reloadData()
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        searchedVehicle = vehicles.filter({ $0.name?.contains(searchText) })
+//        searching = true
+//        tableView.reloadData()
+//    }
 }
 
 

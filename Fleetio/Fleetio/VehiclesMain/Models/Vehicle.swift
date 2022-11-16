@@ -9,44 +9,44 @@ import Foundation
 
 // MARK: - VehicleElement
 class Vehicle: Codable {
-    let id, accountID: Int
+    let id, accountID: Int?
     let archivedAt: Date?
     let fuelTypeID: Int?
-    let fuelTypeName: FuelTypeName?
-    let fuelVolumeUnits: FuelVolumeUnits
-    let groupID: Int
-    let groupName: String
-    let meterUnit: MeterUnit
-    let name: String
-    let ownership: Ownership
-    let secondaryMeter: Bool
-    let secondaryMeterUnit: MeterUnit?
-    let systemOfMeasurement: SystemOfMeasurement
-    let vehicleStatusID: Int
-    let vehicleStatusName: VehicleStatusName
-    let vehicleStatusColor: VehicleStatusColor
-    let vehicleTypeID: Int
-    let vehicleTypeName: String
-    let fuelEntriesCount, serviceEntriesCount, serviceRemindersCount, vehicleRenewalRemindersCount: Int
-    let commentsCount, documentsCount, imagesCount: Int
+    let fuelTypeName: String?
+    let fuelVolumeUnits: String?
+    let groupID: Int?
+    let groupName: String?
+    let meterUnit: String?
+    let name: String?
+    let ownership: String?
+    let secondaryMeter: Bool?
+    let secondaryMeterUnit: String?
+    let systemOfMeasurement: String?
+    let vehicleStatusID: Int?
+    let vehicleStatusName: String?
+    let vehicleStatusColor: String?
+    let vehicleTypeID: Int?
+    let vehicleTypeName: String?
+    let fuelEntriesCount, serviceEntriesCount, serviceRemindersCount, vehicleRenewalRemindersCount: Int?
+    let commentsCount, documentsCount, imagesCount: Int?
     let currentLocationEntryID: Int?
-    let isSample: Bool
+    let isSample: Bool?
     let inServiceDate: String?
     let inServiceMeter, estimatedServiceMonths, estimatedReplacementMileage: Int?
     let estimatedResalePrice: EstimatedResalePrice?
     let outOfServiceDate: String?
     let outOfServiceMeter: Int?
-    let meterName: MeterName
+    let meterName: String?
     let secondaryMeterName: SecondaryMeterName
     let primaryMeterUsagePerDay, secondaryMeterUsagePerDay: String?
-    let createdAt, updatedAt: String
-    let currentMeterValue: Int
+    let createdAt, updatedAt: String?
+    let currentMeterValue: Double?
     let currentMeterDate: String?
-    let secondaryMeterValue: Double
+    let secondaryMeterValue: Double?
     let secondaryMeterDate: String?
-    let groupAncestry: String
+    let groupAncestry: String?
     let color, licensePlate, make, model: String?
-    let registrationExpirationMonth: Int
+    let registrationExpirationMonth: Int?
     let registrationState, trim, vin: String?
     let year: Int?
     let loanAccountNumber, loanEndedAt: String?
@@ -54,16 +54,16 @@ class Vehicle: Codable {
     let loanNotes, loanStartedAt: String?
     let loanVendorID: Int?
     let loanVendorName: String?
-    let customFields: CustomFields
-    let inspectionSchedulesCount, issuesCount, workOrdersCount: Int
-    let typeName: String
+    let customFields: CustomFields?
+    let inspectionSchedulesCount, issuesCount, workOrdersCount: Int?
+    let typeName: String?
     let defaultImageURL, defaultImageURLMedium, defaultImageURLSmall, defaultImageURLLarge: String?
-    let driver: Driver
-    let specs: Specs
-    let externalIDS: ExternalIDS
-    let aiEnabled: Bool
-    let assetableType: AssetableTypeEnum
-    let currentLocationEntry: CurrentLocationEntry
+    let driver: Driver?
+    let specs: Specs?
+    let externalIDS: ExternalIDS?
+    let aiEnabled: Bool?
+    let assetableType: String?
+    let currentLocationEntry: CurrentLocationEntry?
     let loanAmount, loanPayment: Double?
     let residualValue: Int?
     
@@ -146,10 +146,6 @@ class Vehicle: Codable {
     }
 }
 
-enum AssetableTypeEnum: String, Codable {
-    case vehicle = "Vehicle"
-}
-
 // MARK: - CurrentLocationEntry
 struct CurrentLocationEntry: Codable {
     let id: Int?
@@ -159,7 +155,7 @@ struct CurrentLocationEntry: Codable {
     let contactID: Int?
     let address: String?
     let isCurrent: Bool?
-    let itemType: AssetableTypeEnum?
+    let itemType: String?
     let itemID, vehicleID: Int?
     let location: String?
     let addressComponents: AddressComponents?
@@ -188,8 +184,8 @@ struct CurrentLocationEntry: Codable {
 struct AddressComponents: Codable {
     let streetNumber, street, city, region: String?
     let regionShort: String?
-    let country: Country?
-    let countryShort: CountryShort?
+    let country: String?
+    let countryShort: String?
     let postalCode: String?
     
     enum CodingKeys: String, CodingKey {
@@ -200,18 +196,6 @@ struct AddressComponents: Codable {
         case countryShort = "country_short"
         case postalCode = "postal_code"
     }
-}
-
-enum Country: String, Codable {
-    case botswana = "Botswana"
-    case canada = "Canada"
-    case unitedStates = "United States"
-}
-
-enum CountryShort: String, Codable {
-    case bw = "BW"
-    case ca = "CA"
-    case us = "US"
 }
 
 // MARK: - Geolocation
@@ -229,12 +213,12 @@ enum LocatableType: String, Codable {
 struct CustomFields: Codable {
     let telematicsSubscription: TelematicsSubscription?
     let restrict, warrantyExpiration, warrantyType: String?
-    let tollPassNumber: TollPassNumber
-    let rearCameraEnabled: String
+    let tollPassNumber: String?
+    let rearCameraEnabled: String?
     let vehicleCleanliness: String?
-    let test: String
+    let test: String?
     let checkboxFilterTest, manufacturerModel: String?
-    let extraRextraReadAllAboutItThisIsASuperLongFieldNameMyGuyyy: String
+    let extraRextraReadAllAboutItThisIsASuperLongFieldNameMyGuyyy: String?
     
     enum CodingKeys: String, CodingKey {
         case telematicsSubscription = "telematics_subscription"
@@ -259,13 +243,6 @@ enum TelematicsSubscription: String, Codable {
     case subscriptionE = "Subscription E"
 }
 
-enum TollPassNumber: String, Codable {
-    case asdf = "asdf"
-    case empty = ""
-    case text = "Text"
-    case tollPassNumberText = "text"
-}
-
 // MARK: - Driver
 struct Driver: Codable {
     let id: Int?
@@ -285,17 +262,13 @@ struct Driver: Codable {
 
 // MARK: - EstimatedResalePrice
 struct EstimatedResalePrice: Codable {
-    let cents: Int
-    let currencyISO: CurrencyISO
+    let cents: Int?
+    let currencyISO: String?
     
     enum CodingKeys: String, CodingKey {
         case cents
         case currencyISO = "currency_iso"
     }
-}
-
-enum CurrencyISO: String, Codable {
-    case usd = "USD"
 }
 
 // MARK: - ExternalIDS
@@ -312,35 +285,6 @@ struct ExternalIDS: Codable {
     }
 }
 
-enum FuelTypeName: String, Codable {
-    case aviationFuel = "Aviation Fuel"
-    case diesel = "DIESEL"
-    case flexFuel = "Flex Fuel"
-    case gasoline = "Gasoline"
-    case the5HDPropane = "5-HD Propane"
-}
-
-enum FuelVolumeUnits: String, Codable {
-    case liters = "liters"
-    case ukGallons = "uk_gallons"
-    case usGallons = "us_gallons"
-}
-
-enum MeterName: String, Codable {
-    case hourMeter = "Hour Meter"
-    case odometer = "Odometer"
-}
-
-enum MeterUnit: String, Codable {
-    case hr = "hr"
-    case km = "km"
-    case mi = "mi"
-}
-
-enum Ownership: String, Codable {
-    case leased = "Leased"
-    case owned = "Owned"
-}
 
 enum SecondaryMeterName: String, Codable {
     case secondaryMeter = "Secondary Meter"
@@ -351,7 +295,7 @@ struct Specs: Codable {
     let engineBoreWithUnits, wheelbaseWithUnits: String?
     let id, vehicleID, accountID: Int?
     let bodyType: String?
-    let bodySubtype: BodySubtype?
+    let bodySubtype: String?
     let driveType, brakeSystem: String?
     let msrpCents: Int?
     let fuelTankCapacity, fuelTank2_Capacity, frontTrackWidth, groundClearance: Double?
@@ -367,15 +311,15 @@ struct Specs: Codable {
     let epaCity, epaHighway: Int?
     let epaCombined: Double?
     let engineDescription: String?
-    let engineBrand: EngineBrand?
-    let engineAspiration: EngineAspiration?
-    let engineBlockType: EngineBlockType?
+    let engineBrand: String?
+    let engineAspiration: String?
+    let engineBlockType: String?
     let engineBore: Double?
-    let engineCamType: EngineCamType?
+    let engineCamType: String?
     let engineCompression: Double?
     let engineCylinders: Int?
     let engineDisplacement: Double?
-    let fuelInduction: FuelInduction?
+    let fuelInduction: String?
     let fuelQuality: String?
     let maxHP, maxTorque: Int?
     let oilCapacity: Double?
@@ -383,7 +327,7 @@ struct Specs: Codable {
     let engineStroke: Double?
     let engineValves: Int?
     let transmissionDescription: String?
-    let transmissionBrand: TransmissionBrand?
+    let transmissionBrand: String?
     let transmissionType: String?
     let transmissionGears: Int?
     let cargoVolume: Double?
@@ -456,79 +400,4 @@ struct Specs: Codable {
         case weightClass = "weight_class"
         case msrp
     }
-}
-
-enum BodySubtype: String, Codable {
-    case crewCab = "Crew Cab"
-    case empty = ""
-    case metal = "Metal"
-    case passenger = "Passenger"
-    case singleCab = "single cab"
-}
-
-enum EngineAspiration: String, Codable {
-    case empty = ""
-    case engineAspirationNATURALLYASPIRATED = "NATURALLY ASPIRATED"
-    case naturallyAspirated = "Naturally Aspirated"
-    case turbocharger = "Turbocharger"
-}
-
-enum EngineBlockType: String, Codable {
-    case empty = ""
-    case h = "H"
-    case i = "I"
-    case v = "V"
-    case vjjjjj = "Vjjjjj"
-}
-
-enum EngineBrand: String, Codable {
-    case cummins = "Cummins"
-    case duratec = "Duratec"
-    case empty = ""
-    case honda = "Honda"
-    case test = "test"
-    case volvo = "Volvo"
-    case yamaha = "Yamaha"
-}
-
-enum EngineCamType: String, Codable {
-    case dohc = "DOHC"
-    case empty = ""
-    case ohv = "OHV"
-    case sohc = "SOHC"
-}
-
-enum FuelInduction: String, Codable {
-    case directInjection = "Direct Injection"
-    case empty = ""
-    case fuelInjection = "Fuel Injection"
-    case sequentialMultiportFuelInjection = "Sequential Multiport Fuel Injection"
-}
-
-enum TransmissionBrand: String, Codable {
-    case bbb = "BBB"
-    case empty = ""
-    case ford = "Ford"
-}
-
-enum SystemOfMeasurement: String, Codable {
-    case imperial = "imperial"
-    case metric = "metric"
-}
-
-enum VehicleStatusColor: String, Codable {
-    case black = "black"
-    case blue = "blue"
-    case gray = "gray"
-    case maroon = "maroon"
-    case orange = "orange"
-}
-
-enum VehicleStatusName: String, Codable {
-    case active = "Active"
-    case inShop = "In Shop"
-    case inactive = "Inactive"
-    case outOfService = "Out of Service"
-    case rented = "Rented"
-    case sold = "Sold"
 }

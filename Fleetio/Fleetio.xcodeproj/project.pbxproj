@@ -12,15 +12,13 @@
 		7333BDBB2921FF6400A789F1 /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDBA2921FF6400A789F1 /* VehicleViewController.swift */; };
 		7333BDC02921FF6500A789F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7333BDBF2921FF6500A789F1 /* Assets.xcassets */; };
 		7333BDC32921FF6500A789F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7333BDC12921FF6500A789F1 /* LaunchScreen.storyboard */; };
-		7333BDCE292203E300A789F1 /* ApiElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDCD292203E300A789F1 /* ApiElements.swift */; };
+		7333BDCE292203E300A789F1 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDCD292203E300A789F1 /* ApiManager.swift */; };
 		7333BDD02922048600A789F1 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7333BDCF2922048600A789F1 /* Vehicle.swift */; };
-		734A72DD292204F1006327CC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734A72DC292204F1006327CC /* MainViewModel.swift */; };
 		739DADBB29231DC900D362E0 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBA29231DC900D362E0 /* View+Extensions.swift */; };
 		739DADBD2923228400D362E0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBC2923228400D362E0 /* Color+Extensions.swift */; };
 		739DADBF292332DB00D362E0 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBE292332DB00D362E0 /* Image+Extensions.swift */; };
 		739DADC12923E5F500D362E0 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADC02923E5F500D362E0 /* Font+Extensions.swift */; };
-		739DADC62923EBE000D362E0 /* VehicleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADC52923EBE000D362E0 /* VehicleHeader.swift */; };
-		739DADC92923EE4500D362E0 /* VehicleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADC82923EE4500D362E0 /* VehicleHeaderViewModel.swift */; };
+		739DADCB29246F9500D362E0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADCA29246F9500D362E0 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,15 +29,13 @@
 		7333BDBF2921FF6500A789F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7333BDC22921FF6500A789F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7333BDC42921FF6500A789F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7333BDCD292203E300A789F1 /* ApiElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiElements.swift; sourceTree = "<group>"; };
+		7333BDCD292203E300A789F1 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		7333BDCF2922048600A789F1 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
-		734A72DC292204F1006327CC /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		739DADBA29231DC900D362E0 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBC2923228400D362E0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBE292332DB00D362E0 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		739DADC02923E5F500D362E0 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
-		739DADC52923EBE000D362E0 /* VehicleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleHeader.swift; sourceTree = "<group>"; };
-		739DADC82923EE4500D362E0 /* VehicleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleHeaderViewModel.swift; sourceTree = "<group>"; };
+		739DADCA29246F9500D362E0 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +91,7 @@
 		7333BDCB2921FFAF00A789F1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				734A72DC292204F1006327CC /* MainViewModel.swift */,
-				739DADC82923EE4500D362E0 /* VehicleHeaderViewModel.swift */,
+				739DADCA29246F9500D362E0 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -104,7 +99,7 @@
 		7333BDCC292203B700A789F1 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				7333BDCD292203E300A789F1 /* ApiElements.swift */,
+				7333BDCD292203E300A789F1 /* ApiManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -134,7 +129,6 @@
 		739DADC32923EB9600D362E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				739DADC52923EBE000D362E0 /* VehicleHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,14 +207,12 @@
 				7333BDBB2921FF6400A789F1 /* VehicleViewController.swift in Sources */,
 				739DADC12923E5F500D362E0 /* Font+Extensions.swift in Sources */,
 				7333BDB72921FF6400A789F1 /* AppDelegate.swift in Sources */,
-				739DADC92923EE4500D362E0 /* VehicleHeaderViewModel.swift in Sources */,
-				739DADC62923EBE000D362E0 /* VehicleHeader.swift in Sources */,
 				7333BDB92921FF6400A789F1 /* SceneDelegate.swift in Sources */,
 				739DADBD2923228400D362E0 /* Color+Extensions.swift in Sources */,
 				739DADBB29231DC900D362E0 /* View+Extensions.swift in Sources */,
 				7333BDD02922048600A789F1 /* Vehicle.swift in Sources */,
-				7333BDCE292203E300A789F1 /* ApiElements.swift in Sources */,
-				734A72DD292204F1006327CC /* MainViewModel.swift in Sources */,
+				7333BDCE292203E300A789F1 /* ApiManager.swift in Sources */,
+				739DADCB29246F9500D362E0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
