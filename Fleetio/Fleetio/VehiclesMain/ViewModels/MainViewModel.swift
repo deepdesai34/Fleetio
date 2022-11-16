@@ -13,40 +13,38 @@ class MainViewModel {
     var isPaginating: Bool = false
     var currentPage: Int = 0
     var totalPages: Int = 0
-    
+    var originalData = [Vehicle]()
+    var newData = [Vehicle]()
     
     
     func fetchData(pagination: Bool = false, completion: @escaping (Result<[Vehicle], Error>) -> Void) {
-        var originalData = [Vehicle]()
-        var newData = [Vehicle]()
-        
         if pagination {
             isPaginating = true
         }
+        
+        if self.isPaginating && self.currentPage <= totalPages {
+            self.currentPage += 1
+        }
+        DispatchQueue.global().asyncAfter(deadline: .now(), execute: { [self] in
             
-            if self.isPaginating && self.currentPage <= totalPages {
-                self.currentPage += 1
-            }
-            DispatchQueue.global().asyncAfter(deadline: .now(), execute: { [self] in
+            getVehicles(i: self.currentPage, completion: { oldVehicles in
+                self.originalData = oldVehicles
                 
-                getVehicles(i: self.currentPage, completion: { oldVehicles in
-                    originalData = oldVehicles
+                if ((self.currentPage) <= self.totalPages) && self.isPaginating {
+                    self.getVehicles(i: self.currentPage, completion: { newVehicles in
+                        self.newData = newVehicles
+                        completion(.success(pagination ? self.newData : self.originalData))
+                    })
                     
-                    if ((currentPage) <= totalPages) && isPaginating {
-                        self.getVehicles(i: self.currentPage, completion: { newVehicles in
-                            newData = newVehicles
-                            completion(.success(pagination ? newData : originalData))
-                        })
-                       
-                    }
-                    completion(.success(pagination ? newData : originalData))
-                    
-                    if pagination {
-                        self.isPaginating = false
-                    }
-                })
+                }
+                completion(.success(pagination ? self.newData : self.originalData))
+                
+                if pagination {
+                    self.isPaginating = false
+                }
             })
-            
+        })
+        
         
         
         
@@ -97,6 +95,11 @@ class MainViewModel {
         }).resume()
         
         
+    }
+    
+    func resetData() {
+        originalData.removeAll()
+        newData.removeAll()
     }
     
 }

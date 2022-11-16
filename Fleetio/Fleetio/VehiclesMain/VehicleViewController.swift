@@ -51,14 +51,7 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainVM.getHeaderDetails(completion: { currentPage, totalPages in
-            self.mainVM.currentPage = currentPage
-            self.mainVM.totalPages = totalPages
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
+        bindHeaderDetails()
         configureViews()
         configureConstraints()
         
@@ -86,7 +79,9 @@ class VehicleViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = .fleetioGreen
+        tableView.refreshControl?.addTarget(self, action: #selector(pullDownToRefresh), for: .valueChanged)
     }
     
     func configureConstraints() {
@@ -97,20 +92,19 @@ class VehicleViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            // titleLabel.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.topAnchor)
         ])
         
         //SearchBar
         NSLayoutConstraint.activate([
             vehicleSearchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             vehicleSearchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            vehicleSearchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            vehicleSearchBar.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
         ])
         
         //TableView
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: vehicleSearchBar.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: vehicleSearchBar.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: vehicleSearchBar.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: vehicleSearchBar.safeAreaLayoutGuide.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: vehicleSearchBar.safeAreaLayoutGuide.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
@@ -119,17 +113,34 @@ class VehicleViewController: UIViewController {
     
     func configureVMFetch(pagination: Bool) {
         // Binding data for vehicles from viewModel
-        mainVM.fetchData(pagination: pagination, completion: { [weak self] result in
+        mainVM.fetchData(pagination: pagination, completion: { result in
             switch result {
             case .success(let data):
-                self?.vehicles.append(contentsOf: data)
+                self.vehicles.append(contentsOf: data)
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             case .failure(_):
                 print("Failed to fetch data")
             }
         })
+    }
+    
+    func bindHeaderDetails() {
+        mainVM.getHeaderDetails(completion: { currentPage, totalPages in
+            self.mainVM.currentPage = currentPage
+            self.mainVM.totalPages = totalPages
+        })
+    }
+    
+    @objc func pullDownToRefresh() {
+        tableView.tableFooterView?.removeFromSuperview()
+        vehicles.removeAll()
+        bindHeaderDetails()
+        configureVMFetch(pagination: false)
+
+        tableView.refreshControl?.endRefreshing()
+        
     }
 }
 
@@ -187,12 +198,10 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             
             if self.mainVM.currentPage < self.mainVM.totalPages {
                 self.tableView.tableFooterView = createFooterSpinner()
+                configureVMFetch(pagination: true)
             } else {
                 self.tableView.tableFooterView = nil
             }
-            
-            configureVMFetch(pagination: true)
-            
         }
     }
     
