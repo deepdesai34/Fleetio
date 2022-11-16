@@ -154,6 +154,22 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    private func createFooterSpinner() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        spinner.color = .fleetioGreen
+        
+        return footerView
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (self.tableView.contentSize.height-100-scrollView.frame.size.height) {
@@ -161,10 +177,13 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 return
             }
             
-            print("hello")
+            self.tableView.tableFooterView = createFooterSpinner()
+            
             configureVMFetch(pagination: true)
+            
         }
     }
+
 }
 
 // Search Functionality
@@ -179,6 +198,7 @@ extension VehicleViewController: UISearchBarDelegate {
             }
             return isThere ?? false
         })
+        
         searching = true
         tableView.reloadData()
     }

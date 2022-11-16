@@ -29,7 +29,7 @@ class MainViewModel {
                 getVehicles(i: currentPage, completion: { [self] oldVehicles in
                     originalData = oldVehicles
                     
-                    if (currentPage + 1) <= totalPages {
+                    if ((currentPage + 1) <= totalPages) && isPaginating {
                         self.getVehicles(i: currentPage + 1, completion: { newVehicles in
                             newData = newVehicles
                             completion(.success(pagination ? newData : originalData))
