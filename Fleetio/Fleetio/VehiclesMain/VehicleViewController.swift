@@ -51,7 +51,6 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureVMData()
         configureViews()
         configureConstraints()
         
@@ -59,20 +58,7 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        mainVM.fetchData(completion: { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.vehicles.append(contentsOf: data)
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-               
-                
-            case .failure(_):
-                print("Failed to fetch data")
-            }
-        })
+        configureVMFetch(pagination: false)
     }
     
     func configureViews() {
@@ -123,17 +109,15 @@ class VehicleViewController: UIViewController {
         
     }
     
-    func configureVMData() {
+    func configureVMFetch(pagination: Bool) {
         // Binding data for vehicles from viewModel
-        mainVM.fetchData(completion: { [weak self] result in
+        mainVM.fetchData(pagination: pagination, completion: { [weak self] result in
             switch result {
             case .success(let data):
                 self?.vehicles.append(contentsOf: data)
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
-               
-                
             case .failure(_):
                 print("Failed to fetch data")
             }
@@ -142,7 +126,7 @@ class VehicleViewController: UIViewController {
 }
 
 // TableView Protocols
-extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
+extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
@@ -159,7 +143,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
         
         var configuration = cell.defaultContentConfiguration()
         if !(searching && vehicleSearchBar.text != "") {
-            configuration.text = vehicles[indexPath.row].name
+            configuration.text = "\(vehicles[indexPath.row].name) + \(indexPath.row)"
         } else {
             configuration.text = searchedVehicle[indexPath.row].name
         }
@@ -168,6 +152,18 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource  {
         
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (self.tableView.contentSize.height-100-scrollView.frame.size.height) {
+            guard !mainVM.isPaginating else {
+                return
+            }
+            
+            print("hello")
+            configureVMFetch(pagination: true)
+        }
     }
 }
 

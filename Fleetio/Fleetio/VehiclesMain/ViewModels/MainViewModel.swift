@@ -10,7 +10,7 @@ import Foundation
 
 class MainViewModel {
     
-    
+    var isPaginating: Bool = false
     
     
     
@@ -18,23 +18,30 @@ class MainViewModel {
         var originalData = [Vehicle]()
         var newData = [Vehicle]()
         
+        if pagination {
+            isPaginating = true
+        }
+        
         getHeaderDetails(completion: { currentPage, totalPages in
             
-            DispatchQueue.global().asyncAfter(deadline: .now(), execute: { [self] in
+            DispatchQueue.global().asyncAfter(deadline: .now() + (pagination ? 3:2), execute: { [self] in
                 
-                for i in 1..<totalPages {
-                    getVehicles(i: i, completion: { oldVehicles in
-                        originalData = oldVehicles
-                    })
+                getVehicles(i: currentPage, completion: { [self] oldVehicles in
+                    originalData = oldVehicles
                     
-                    getVehicles(i: 2, completion: { newVehicles in
-                        newData = newVehicles
-                    })
+                    if (currentPage + 1) <= totalPages {
+                        self.getVehicles(i: currentPage + 1, completion: { newVehicles in
+                            newData = newVehicles
+                            completion(.success(pagination ? newData : originalData))
+                        })
+                       
+                    }
+                    completion(.success(pagination ? newData : originalData))
                     
-                    
-                }
-                
-                
+                    if pagination {
+                        self.isPaginating = false
+                    }
+                })
             })
             
         })
