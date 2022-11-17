@@ -37,7 +37,7 @@ class VehicleViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
-        table.separatorColor = .fleetioGreen
+        table.separatorColor = .black
         table.sectionIndexColor = .white
         table.tableFooterView?.isHidden = true
         

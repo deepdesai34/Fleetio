@@ -53,8 +53,8 @@ class VehicleTableViewCell: UITableViewCell {
     let nameTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
-        label.textColor = .fleetioGreen
+        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.textColor = .black
         label.text = "Name: "
         
         return label
@@ -63,8 +63,8 @@ class VehicleTableViewCell: UITableViewCell {
     let makeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
-        label.textColor = .fleetioGreen
+        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.textColor = .black
         label.text = "Make: "
         
         return label
@@ -73,8 +73,8 @@ class VehicleTableViewCell: UITableViewCell {
     let modelTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
-        label.textColor = .fleetioGreen
+        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.textColor = .black
         label.text = "Model: "
         
         return label
@@ -92,7 +92,8 @@ class VehicleTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -103,7 +104,8 @@ class VehicleTableViewCell: UITableViewCell {
     let makeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -114,7 +116,8 @@ class VehicleTableViewCell: UITableViewCell {
     let modelLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -135,7 +138,7 @@ class VehicleTableViewCell: UITableViewCell {
     
     private func configureViews() {
         self.accessoryType = .disclosureIndicator
-        self.tintColor = .fleetioGreen
+        self.tintColor = .black
         
         self.backgroundColor = .white
         contentView.addSubview(vehicleImageView)

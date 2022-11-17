@@ -104,7 +104,7 @@ class MainViewModel {
         
         guard let apiMan = apiManager else { return }
         
-        let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)")
+        let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)?q[s]=name+asc")
         request.httpMethod = "GET"
         
         

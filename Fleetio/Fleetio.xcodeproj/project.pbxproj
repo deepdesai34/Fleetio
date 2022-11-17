@@ -75,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				739DADC22923EB2B00D362E0 /* VehiclesMain */,
+				733F6B882926BBEB009B4709 /* VehicleDetails */,
 				7333BDCC292203B700A789F1 /* API */,
 				739DADB929231DA300D362E0 /* Extensions */,
 				7333BDB82921FF6400A789F1 /* SceneDelegate.swift */,
@@ -133,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				7333BDBA2921FF6400A789F1 /* VehicleViewController.swift */,
-				733F6B882926BBEB009B4709 /* VehicleDetails */,
 				7333BDCA2921FFA900A789F1 /* Models */,
 				739DADC32923EB9600D362E0 /* Views */,
 				7333BDCB2921FFAF00A789F1 /* ViewModels */,
