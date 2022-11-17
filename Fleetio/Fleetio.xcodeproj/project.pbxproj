@@ -17,6 +17,7 @@
 		733F6B802925A1CC009B4709 /* VehicleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B7F2925A1CC009B4709 /* VehicleCellViewModel.swift */; };
 		733F6B862926A257009B4709 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 733F6B852926A257009B4709 /* Kingfisher */; };
 		733F6B8A2926BC03009B4709 /* VehicleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B892926BC03009B4709 /* VehicleDetailViewController.swift */; };
+		733F6B8C2926FA72009B4709 /* Table+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B8B2926FA72009B4709 /* Table+Extensions.swift */; };
 		739DADBB29231DC900D362E0 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBA29231DC900D362E0 /* View+Extensions.swift */; };
 		739DADBD2923228400D362E0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBC2923228400D362E0 /* Color+Extensions.swift */; };
 		739DADBF292332DB00D362E0 /* ImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBE292332DB00D362E0 /* ImageView+Extensions.swift */; };
@@ -36,6 +37,7 @@
 		733F6B7D2925A1B2009B4709 /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
 		733F6B7F2925A1CC009B4709 /* VehicleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCellViewModel.swift; sourceTree = "<group>"; };
 		733F6B892926BC03009B4709 /* VehicleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailViewController.swift; sourceTree = "<group>"; };
+		733F6B8B2926FA72009B4709 /* Table+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Table+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBA29231DC900D362E0 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBC2923228400D362E0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBE292332DB00D362E0 /* ImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				739DADBC2923228400D362E0 /* Color+Extensions.swift */,
 				739DADBE292332DB00D362E0 /* ImageView+Extensions.swift */,
 				739DADC02923E5F500D362E0 /* Font+Extensions.swift */,
+				733F6B8B2926FA72009B4709 /* Table+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				7333BDB72921FF6400A789F1 /* AppDelegate.swift in Sources */,
 				7333BDB92921FF6400A789F1 /* SceneDelegate.swift in Sources */,
 				739DADBD2923228400D362E0 /* Color+Extensions.swift in Sources */,
+				733F6B8C2926FA72009B4709 /* Table+Extensions.swift in Sources */,
 				739DADBB29231DC900D362E0 /* View+Extensions.swift in Sources */,
 				733F6B7E2925A1B2009B4709 /* VehicleTableViewCell.swift in Sources */,
 				7333BDD02922048600A789F1 /* Vehicle.swift in Sources */,

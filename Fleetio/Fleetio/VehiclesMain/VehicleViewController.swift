@@ -47,7 +47,8 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.refreshControl?.beginRefreshing()
+        
+        tableView.largeContentImage = UIImage(systemName: "clock.arrow.2.circlepath")
         bindHeaderDetails()
         configureViews()
         configureConstraints()
@@ -60,6 +61,8 @@ class VehicleViewController: UIViewController {
     }
     
     func configureViews() {
+        
+        tableView.setEmptyMessage("Loading ...")
         //MainView
         view.backgroundColor = .white
         
@@ -117,8 +120,10 @@ class VehicleViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
+                    self.tableView.restore()
                 }
             case .failure(_):
+                self.tableView.setEmptyMessage("Error Could Not Load")
                 print("Failed to fetch data")
             }
         })
@@ -138,7 +143,7 @@ class VehicleViewController: UIViewController {
     
     @objc func pullDownToRefresh() {
         tableView.tableFooterView = nil
-        
+        tableView.restore()
         mainVM.vehicles.removeAll()
         mainVM.searchedVehicles.removeAll()
         tableView.setNeedsDisplay()
@@ -168,6 +173,10 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
        
         cell.selectionStyle = .none
+        
+        if mainVM.searchedVehicles.isEmpty {
+            self.tableView.setEmptyMessage("No Search results!")
+        }
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             
@@ -265,7 +274,7 @@ extension VehicleViewController: UISearchBarDelegate {
         mainVM.filterSearch(text: searchText)
         
         mainVM.searching = true
-       // tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
