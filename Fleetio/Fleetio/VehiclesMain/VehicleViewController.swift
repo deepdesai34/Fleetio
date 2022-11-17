@@ -213,6 +213,30 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = VehicleDetailViewController()
+        let navController = UINavigationController(rootViewController: detailVC)
+        
+        navController.title = "yo"
+        
+        if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
+            
+            let vehicleName = mainVM.vehicles[indexPath.row].name
+            let vehicleLongitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
+            let vehicleLatitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
+            
+            self.present(navController, animated: true)
+            
+        } else {
+            
+            let searchedName = mainVM.searchedVehicles[indexPath.row].name
+            let searchedLongitude = mainVM.searchedVehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
+            let searchedLatitude = mainVM.searchedVehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
+            
+            self.present(navController, animated: true)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
     }

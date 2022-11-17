@@ -11,11 +11,10 @@ import CoreLocation
 
 class VehicleDetailViewController: UIViewController {
     
-    
-    
     let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.layer.cornerRadius = 5
         
         return mapView
     }()
@@ -23,13 +22,23 @@ class VehicleDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        configureConstraints()
     }
     
     func configureView() {
+        view.backgroundColor = .white
         view.addSubview(mapView)
         
-        mapView.pinToSuperView(superView: view)
         render(latitude: 29.794931, longitude: -95.032926)
+    }
+    
+    func configureConstraints() {
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 15),
+            mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+        ])
     }
     
     func render(latitude: Double, longitude: Double) {
