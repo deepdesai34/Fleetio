@@ -18,11 +18,5 @@ class VehicleCellViewModel {
         self.model = model
         self.image = image
         self.make = make
-        
-        convertToImage(urlString: image)
-    }
-    
-    func convertToImage(urlString: String?) {
-        
     }
 }

@@ -19,12 +19,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIImageName</key>
-		<string>AppIcon</string>
-		<key>UIColorName</key>
-		<string>fleetioSplash</string>
-	</dict>
 </dict>
 </plist>

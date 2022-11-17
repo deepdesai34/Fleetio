@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 
 class VehicleTableViewCell: UITableViewCell {
@@ -85,7 +86,6 @@ class VehicleTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 5
-        imageView.backgroundColor = .white
         
         return imageView
     }()
@@ -184,6 +184,29 @@ class VehicleTableViewCell: UITableViewCell {
         nameLabel.text =  (cellViewModel.name ?? "NA")
         makeLabel.text =  (cellViewModel.make ?? "N/A")
         modelLabel.text = (cellViewModel.model ?? "N/A")
+        
+        let url = URL(string: "https://d8g9nhlfs6lwh.cloudfront.net/ICM5IE9QT8WM1fWCGKhr?signature=e1bf387376847dc881ac46d80ac0ca089532483f5f55b64305fc232b5d0b5488&policy=eyJoYW5kbGUiOiJJQ001SUU5UVQ4V00xZldDR0tociIsImV4cGlyeSI6NDUzNDk0OTM0MywiY2FsbCI6WyJyZWFkIl19")
+        let processor = DownsamplingImageProcessor(size: vehicleImageView.bounds.size)
+                     |> RoundCornerImageProcessor(cornerRadius: 20)
+        vehicleImageView.kf.indicatorType = .activity
+        vehicleImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "placeholderImage"),
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
+        {
+            result in
+            switch result {
+            case .success(let value):
+                print("Task done for: \(value.source.url?.absoluteString ?? "")")
+            case .failure(let error):
+                print("Job failed: \(error.localizedDescription)")
+            }
+        }
     }
     
     
