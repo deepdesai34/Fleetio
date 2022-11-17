@@ -14,7 +14,7 @@ class VehicleViewController: UIViewController {
     
     //Objects
     var vehicles = [Vehicle]()
-    var searchedVehicle = [Vehicle]()
+    var searchedVehicles = [Vehicle]()
     
     //Variables
     var searching: Bool = false
@@ -24,7 +24,7 @@ class VehicleViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.roundedTitleFont(ofSize: 30, weight: .bold)
-        label.textColor = .fleetioGreen
+        label.textColor = .black
         label.text = "Vehicles"
         
         return label
@@ -77,7 +77,7 @@ class VehicleViewController: UIViewController {
         
         // TableView
         view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(VehicleTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -144,7 +144,7 @@ class VehicleViewController: UIViewController {
         tableView.tableFooterView = nil
         
         vehicles.removeAll()
-        searchedVehicle.removeAll()
+        searchedVehicles.removeAll()
         tableView.setNeedsDisplay()
         mainVM.resetData()
         bindHeaderDetails(isRefresh: true)
@@ -164,24 +164,33 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if !(searching && vehicleSearchBar.text != "") {
             return vehicles.count
         } else {
-            return searchedVehicle.count
+            return searchedVehicles.count
             
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
         
-        var configuration = cell.defaultContentConfiguration()
         
-        // TO DO: add to VM
+        
         if !(searching && vehicleSearchBar.text != "") {
-            configuration.text = "\(String(describing: vehicles[indexPath.row].name)) + \(indexPath.row)"
+            
+            let vehicleName = vehicles[indexPath.row].name
+            let vehicleMake = vehicles[indexPath.row].make
+            let vehicleModel = vehicles[indexPath.row].model
+            
+            let cellVM = VehicleCellViewModel(name: vehicleName, model: vehicleModel, image: nil, make: vehicleMake)
+            cell.setup(cellViewModel: cellVM)
         } else {
-            configuration.text = searchedVehicle[indexPath.row].name
+            
+            let searchedName = searchedVehicles[indexPath.row].name
+            let searchedMake = searchedVehicles[indexPath.row].make
+            let searchedModel = searchedVehicles[indexPath.row].model
+            
+            let cellVM = VehicleCellViewModel(name: searchedName, model: searchedModel, image: nil, make: searchedMake)
+            cell.setup(cellViewModel: cellVM)
         }
-        
-        cell.contentConfiguration = configuration
         
         
         return cell
@@ -206,8 +215,12 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             }
             
         }
+        
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
     private func createFooterSpinner() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         
@@ -227,7 +240,7 @@ extension VehicleViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        searchedVehicle = vehicles.filter({
+        searchedVehicles = vehicles.filter({
             var isThere: Bool?
             if let name = $0.name {
                 isThere = name.contains(searchText)
