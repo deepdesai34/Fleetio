@@ -168,8 +168,8 @@ class VehicleTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             vehicleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            vehicleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            vehicleImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -20),
+            vehicleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            vehicleImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -40),
             vehicleImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -20),
         ])
         

@@ -37,7 +37,7 @@ class VehicleViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
-        table.separatorColor = .black
+        table.separatorColor = .fleetioGreen
         table.sectionIndexColor = .white
         table.tableFooterView?.isHidden = true
         
@@ -116,6 +116,7 @@ class VehicleViewController: UIViewController {
                 self.mainVM.vehicles.append(contentsOf: data)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
                 }
             case .failure(_):
                 print("Failed to fetch data")
@@ -143,9 +144,8 @@ class VehicleViewController: UIViewController {
         tableView.setNeedsDisplay()
         mainVM.resetData()
         bindHeaderDetails(isRefresh: true)
-        configureVMFetch(pagination: false, reloadData: false)
+        configureVMFetch(pagination: false, reloadData: true)
         tableView.reloadData()
-        tableView.refreshControl?.endRefreshing()
         
     }
 }
@@ -238,7 +238,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 90
     }
     
     
@@ -265,7 +265,7 @@ extension VehicleViewController: UISearchBarDelegate {
         mainVM.filterSearch(text: searchText)
         
         mainVM.searching = true
-        tableView.reloadData()
+       // tableView.reloadData()
     }
 }
 
