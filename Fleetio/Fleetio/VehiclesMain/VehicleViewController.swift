@@ -12,12 +12,6 @@ class VehicleViewController: UIViewController {
     //VMs
     let mainVM = MainViewModel()
     
-    //Objects
-    var vehicles = [Vehicle]()
-    var searchedVehicles = [Vehicle]()
-    
-    //Variables
-    var searching: Bool = false
     
     //UI Variables
     let titleLabel: UILabel = {
@@ -118,7 +112,7 @@ class VehicleViewController: UIViewController {
         mainVM.fetchData(pagination: pagination, completion: { result in
             switch result {
             case .success(let data):
-                self.vehicles.append(contentsOf: data)
+                self.mainVM.vehicles.append(contentsOf: data)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -143,8 +137,8 @@ class VehicleViewController: UIViewController {
     @objc func pullDownToRefresh() {
         tableView.tableFooterView = nil
         
-        vehicles.removeAll()
-        searchedVehicles.removeAll()
+        mainVM.vehicles.removeAll()
+        mainVM.searchedVehicles.removeAll()
         tableView.setNeedsDisplay()
         mainVM.resetData()
         bindHeaderDetails(isRefresh: true)
@@ -161,40 +155,39 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // TO DO: add to VM
-        if !(searching && vehicleSearchBar.text != "") {
-            return vehicles.count
+        if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
+            return mainVM.vehicles.count
         } else {
-            return searchedVehicles.count
+            return mainVM.searchedVehicles.count
             
         }
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
         
-        
-        
-        if !(searching && vehicleSearchBar.text != "") {
+        if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             
-            let vehicleName = vehicles[indexPath.row].name
-            let vehicleMake = vehicles[indexPath.row].make
-            let vehicleModel = vehicles[indexPath.row].model
+            let vehicleName = mainVM.vehicles[indexPath.row].name
+            let vehicleMake = mainVM.vehicles[indexPath.row].make
+            let vehicleModel = mainVM.vehicles[indexPath.row].model
             
             let cellVM = VehicleCellViewModel(name: vehicleName, model: vehicleModel, image: nil, make: vehicleMake)
             cell.setup(cellViewModel: cellVM)
         } else {
             
-            let searchedName = searchedVehicles[indexPath.row].name
-            let searchedMake = searchedVehicles[indexPath.row].make
-            let searchedModel = searchedVehicles[indexPath.row].model
+            let searchedName = mainVM.searchedVehicles[indexPath.row].name
+            let searchedMake = mainVM.searchedVehicles[indexPath.row].make
+            let searchedModel = mainVM.searchedVehicles[indexPath.row].model
             
             let cellVM = VehicleCellViewModel(name: searchedName, model: searchedModel, image: nil, make: searchedMake)
             cell.setup(cellViewModel: cellVM)
         }
         
-        
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 30
@@ -202,7 +195,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if indexPath.row + 1 == vehicles.count {
+        if indexPath.row + 1 == mainVM.vehicles.count {
             guard !mainVM.isPaginating else {
                 return
             }
@@ -213,9 +206,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             } else {
                 self.tableView.tableFooterView = nil
             }
-            
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -240,15 +231,9 @@ extension VehicleViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        searchedVehicles = vehicles.filter({
-            var isThere: Bool?
-            if let name = $0.name {
-                isThere = name.contains(searchText)
-            }
-            return isThere ?? false
-        })
+        mainVM.filterSearch(text: searchText)
         
-        searching = true
+        mainVM.searching = true
         tableView.reloadData()
     }
 }

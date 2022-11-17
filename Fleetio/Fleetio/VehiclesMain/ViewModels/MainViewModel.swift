@@ -13,11 +13,18 @@ class MainViewModel {
     var isPaginating: Bool = false
     var currentPage: Int = 0
     var totalPages: Int = 0
+    var vehicles = [Vehicle]()
+    var searchedVehicles = [Vehicle]()
+    var searching: Bool = false
+    
+    // private variables
+    private var isThere: Bool?
     private var originalData = [Vehicle]()
     private var newData = [Vehicle]()
     private var apiManager: ApiManager?
     
     
+    // Request Functions
     func fetchData(pagination: Bool = false, completion: @escaping (Result<[Vehicle], Error>) -> Void) {
         if pagination {
             isPaginating = true
@@ -35,9 +42,7 @@ class MainViewModel {
                     self.getVehicles(i: self.currentPage, completion: { newVehicles in
                         self.newData = newVehicles
                     })
-                    
                 }
-                
                 
                 completion(.success(pagination ? self.newData : self.originalData))
                 
@@ -46,10 +51,6 @@ class MainViewModel {
                 }
             })
         })
-        
-        
-        
-        
     }
     
     
@@ -71,12 +72,38 @@ class MainViewModel {
     }
     
     
+    // Object Functions
+    
+    func resetData() {
+        originalData.removeAll()
+        newData.removeAll()
+    }
+    
+    func isSearching(searchText: String) -> Bool {
+        if !(searching && searchText != "") {
+            return false
+        }
+        
+        return true
+    }
+    
+    func filterSearch(text: String) {
+        searchedVehicles = vehicles.filter({
+            
+            if let name = $0.name {
+                isThere = name.contains(text)
+            }
+            return isThere ?? false
+        })
+    }
+    
+    // Private Functions
     
     private func getVehicles(i: Int, completion: @escaping ([Vehicle]) ->()) {
         apiManager = ApiManager()
         
         guard let apiMan = apiManager else { return }
-    
+        
         let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)")
         request.httpMethod = "GET"
         
@@ -100,14 +127,6 @@ class MainViewModel {
             }
             
         }).resume()
-        
-        
-        
-    }
-    
-    func resetData() {
-        originalData.removeAll()
-        newData.removeAll()
     }
     
 }
