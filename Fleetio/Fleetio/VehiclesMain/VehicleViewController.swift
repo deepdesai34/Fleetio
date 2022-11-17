@@ -38,7 +38,7 @@ class VehicleViewController: UIViewController {
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
         table.separatorColor = .fleetioGreen
-        table.sectionIndexColor = .black
+        table.sectionIndexColor = .white
         table.tableFooterView?.isHidden = true
         
         
@@ -60,7 +60,7 @@ class VehicleViewController: UIViewController {
     
     func configureViews() {
         //MainView
-        view.backgroundColor = .black.withAlphaComponent(0.5)
+        view.backgroundColor = .white
         
         //TitleLabel
         view.addSubview(titleLabel)
@@ -181,8 +181,9 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             let searchedName = mainVM.searchedVehicles[indexPath.row].name
             let searchedMake = mainVM.searchedVehicles[indexPath.row].make
             let searchedModel = mainVM.searchedVehicles[indexPath.row].model
+            let vehicleImage = mainVM.searchedVehicles[indexPath.row].defaultImageURL
             
-            let cellVM = VehicleCellViewModel(name: searchedName, model: searchedModel, image: nil, make: searchedMake)
+            let cellVM = VehicleCellViewModel(name: searchedName, model: searchedModel, image: vehicleImage, make: searchedMake)
             cell.setup(cellViewModel: cellVM)
         }
         

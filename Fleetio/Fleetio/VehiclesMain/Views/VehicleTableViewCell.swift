@@ -53,7 +53,7 @@ class VehicleTableViewCell: UITableViewCell {
     let nameTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
         label.textColor = .fleetioGreen
         label.text = "Name: "
         
@@ -63,7 +63,7 @@ class VehicleTableViewCell: UITableViewCell {
     let makeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
         label.textColor = .fleetioGreen
         label.text = "Make: "
         
@@ -73,7 +73,7 @@ class VehicleTableViewCell: UITableViewCell {
     let modelTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .heavy)
         label.textColor = .fleetioGreen
         label.text = "Model: "
         
@@ -85,15 +85,14 @@ class VehicleTableViewCell: UITableViewCell {
     let vehicleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 5
-        
+        imageView.backgroundColor = .white
         return imageView
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -104,7 +103,7 @@ class VehicleTableViewCell: UITableViewCell {
     let makeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -115,7 +114,7 @@ class VehicleTableViewCell: UITableViewCell {
     let modelLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -136,7 +135,9 @@ class VehicleTableViewCell: UITableViewCell {
     
     private func configureViews() {
         self.accessoryType = .disclosureIndicator
-        self.backgroundColor = .black.withAlphaComponent(0.75)
+        self.tintColor = .fleetioGreen
+        
+        self.backgroundColor = .white
         contentView.addSubview(vehicleImageView)
         contentView.addSubview(mainVStack)
         
@@ -185,28 +186,7 @@ class VehicleTableViewCell: UITableViewCell {
         makeLabel.text =  (cellViewModel.make ?? "N/A")
         modelLabel.text = (cellViewModel.model ?? "N/A")
         
-        let url = URL(string: "https://d8g9nhlfs6lwh.cloudfront.net/ICM5IE9QT8WM1fWCGKhr?signature=e1bf387376847dc881ac46d80ac0ca089532483f5f55b64305fc232b5d0b5488&policy=eyJoYW5kbGUiOiJJQ001SUU5UVQ4V00xZldDR0tociIsImV4cGlyeSI6NDUzNDk0OTM0MywiY2FsbCI6WyJyZWFkIl19")
-        let processor = DownsamplingImageProcessor(size: vehicleImageView.bounds.size)
-                     |> RoundCornerImageProcessor(cornerRadius: 20)
-        vehicleImageView.kf.indicatorType = .activity
-        vehicleImageView.kf.setImage(
-            with: url,
-            placeholder: UIImage(named: "placeholderImage"),
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        {
-            result in
-            switch result {
-            case .success(let value):
-                print("Task done for: \(value.source.url?.absoluteString ?? "")")
-            case .failure(let error):
-                print("Job failed: \(error.localizedDescription)")
-            }
-        }
+        vehicleImageView.cacheImage(imageStringURL: cellViewModel.image)
     }
     
     

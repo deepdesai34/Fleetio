@@ -7,44 +7,36 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
-
-//extension UIImageView {
-    
-//    func load(urlString: String) {
-//        if let url = URL(string: urlString){
-//            DispatchQueue.global().async { [weak self] in
-//                if let data = try? Data(contentsOf: url) {
-//                    if let image = UIImage(data: data) {
-//                        DispatchQueue.main.async {
-//                            self?.image = image
-//                        }
-//                    }
-//                }
-//            }
-//
-//        } else {
-//            self.image = UIImage(systemName: "nosign.app")
-//            self.tintColor = .fleetioGrey
-//
-//        }
-//
-//
-//    }
-//
-//
-//
-//}
 
 extension UIImageView {
-    func loadFrom(URLAddress: String) {
-        if let url = URL(string: URLAddress) {
+    
+    func cacheImage(imageStringURL: String?) {
+        
+        if let newImageStringURL = imageStringURL {
             
-            DispatchQueue.main.async { [weak self] in
-                if let imageData = try? Data(contentsOf: url) {
-                    if let loadedImage = UIImage(data: imageData) {
-                            self?.image = loadedImage
-                    }
+            let url = URL(string: newImageStringURL)
+            
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))
+            |> RoundCornerImageProcessor(cornerRadius: 20)
+            self.kf.indicatorType = .activity
+            self.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "placeholderImage"),
+                options: [
+                    .processor(processor),
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ]) {
+                
+                result in
+                switch result {
+                case .success(let value):
+                    print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                case .failure(let error):
+                    print("Job failed: \(error.localizedDescription)")
                 }
             }
         } else {
@@ -54,7 +46,6 @@ extension UIImageView {
         
 
     }
+    
 }
-
-
 
