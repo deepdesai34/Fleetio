@@ -10,13 +10,19 @@ import Foundation
 class VehicleCellViewModel {
     let name: String?
     let model: String?
-    let image: URL?
+    let image: String?
     let make: String?
     
-    init(name:  String?, model: String?, image: URL?, make: String?) {
+    init(name:  String?, model: String?, image: String?, make: String?) {
         self.name = name
         self.model = model
         self.image = image
         self.make = make
+        
+        convertToImage(urlString: image)
+    }
+    
+    func convertToImage(urlString: String?) {
+        
     }
 }

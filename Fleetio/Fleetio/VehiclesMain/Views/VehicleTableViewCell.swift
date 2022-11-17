@@ -53,6 +53,7 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.textColor = .fleetioGreen
         label.text = "Name: "
         
         return label
@@ -62,6 +63,7 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.textColor = .fleetioGreen
         label.text = "Make: "
         
         return label
@@ -71,6 +73,7 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.textColor = .fleetioGreen
         label.text = "Model: "
         
         return label
@@ -82,7 +85,7 @@ class VehicleTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 5
-        imageView.backgroundColor = .black
+        imageView.backgroundColor = .white
         
         return imageView
     }()
@@ -133,6 +136,7 @@ class VehicleTableViewCell: UITableViewCell {
     
     private func configureViews() {
         self.accessoryType = .disclosureIndicator
+        self.backgroundColor = .black.withAlphaComponent(0.75)
         contentView.addSubview(vehicleImageView)
         contentView.addSubview(mainVStack)
         

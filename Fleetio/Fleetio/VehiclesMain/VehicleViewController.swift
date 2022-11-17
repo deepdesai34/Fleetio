@@ -17,7 +17,7 @@ class VehicleViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.roundedTitleFont(ofSize: 30, weight: .bold)
-        label.textColor = .black
+        label.textColor = .fleetioGreen
         label.text = "Vehicles"
         
         return label
@@ -27,6 +27,7 @@ class VehicleViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Search By Name"
+        searchBar.backgroundColor = .fleetioGreen
         
         return searchBar
     }()
@@ -59,7 +60,7 @@ class VehicleViewController: UIViewController {
     
     func configureViews() {
         //MainView
-        view.backgroundColor = .white
+        view.backgroundColor = .black.withAlphaComponent(0.5)
         
         //TitleLabel
         view.addSubview(titleLabel)
@@ -171,8 +172,9 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             let vehicleName = mainVM.vehicles[indexPath.row].name
             let vehicleMake = mainVM.vehicles[indexPath.row].make
             let vehicleModel = mainVM.vehicles[indexPath.row].model
+            let vehicleImage = mainVM.vehicles[indexPath.row].defaultImageURL
             
-            let cellVM = VehicleCellViewModel(name: vehicleName, model: vehicleModel, image: nil, make: vehicleMake)
+            let cellVM = VehicleCellViewModel(name: vehicleName, model: vehicleModel, image: vehicleImage, make: vehicleMake)
             cell.setup(cellViewModel: cellVM)
         } else {
             
@@ -209,7 +211,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 150
     }
     private func createFooterSpinner() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
