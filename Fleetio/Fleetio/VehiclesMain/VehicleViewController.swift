@@ -47,6 +47,7 @@ class VehicleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.refreshControl?.beginRefreshing()
         bindHeaderDetails()
         configureViews()
         configureConstraints()
@@ -154,7 +155,6 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        // TO DO: add to VM
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             return mainVM.vehicles.count
         } else {
@@ -166,6 +166,8 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
+       
+        cell.selectionStyle = .none
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             
@@ -212,8 +214,11 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 125
     }
+    
+    
+    // Footer spinner
     private func createFooterSpinner() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         

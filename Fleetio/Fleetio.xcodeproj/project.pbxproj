@@ -16,6 +16,7 @@
 		733F6B7E2925A1B2009B4709 /* VehicleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B7D2925A1B2009B4709 /* VehicleTableViewCell.swift */; };
 		733F6B802925A1CC009B4709 /* VehicleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B7F2925A1CC009B4709 /* VehicleCellViewModel.swift */; };
 		733F6B862926A257009B4709 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 733F6B852926A257009B4709 /* Kingfisher */; };
+		733F6B8A2926BC03009B4709 /* VehicleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F6B892926BC03009B4709 /* VehicleDetailViewController.swift */; };
 		739DADBB29231DC900D362E0 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBA29231DC900D362E0 /* View+Extensions.swift */; };
 		739DADBD2923228400D362E0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBC2923228400D362E0 /* Color+Extensions.swift */; };
 		739DADBF292332DB00D362E0 /* ImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DADBE292332DB00D362E0 /* ImageView+Extensions.swift */; };
@@ -34,6 +35,7 @@
 		7333BDCF2922048600A789F1 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		733F6B7D2925A1B2009B4709 /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
 		733F6B7F2925A1CC009B4709 /* VehicleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCellViewModel.swift; sourceTree = "<group>"; };
+		733F6B892926BC03009B4709 /* VehicleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailViewController.swift; sourceTree = "<group>"; };
 		739DADBA29231DC900D362E0 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBC2923228400D362E0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		739DADBE292332DB00D362E0 /* ImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		733F6B882926BBEB009B4709 /* VehicleDetails */ = {
+			isa = PBXGroup;
+			children = (
+				733F6B892926BC03009B4709 /* VehicleDetailViewController.swift */,
+			);
+			path = VehicleDetails;
+			sourceTree = "<group>";
+		};
 		739DADB929231DA300D362E0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				7333BDBA2921FF6400A789F1 /* VehicleViewController.swift */,
+				733F6B882926BBEB009B4709 /* VehicleDetails */,
 				7333BDCA2921FFA900A789F1 /* Models */,
 				739DADC32923EB9600D362E0 /* Views */,
 				7333BDCB2921FFAF00A789F1 /* ViewModels */,
@@ -224,6 +235,7 @@
 				7333BDD02922048600A789F1 /* Vehicle.swift in Sources */,
 				733F6B802925A1CC009B4709 /* VehicleCellViewModel.swift in Sources */,
 				7333BDCE292203E300A789F1 /* ApiManager.swift in Sources */,
+				733F6B8A2926BC03009B4709 /* VehicleDetailViewController.swift in Sources */,
 				739DADCB29246F9500D362E0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

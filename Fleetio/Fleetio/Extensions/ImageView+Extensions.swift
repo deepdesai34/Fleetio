@@ -19,7 +19,7 @@ extension UIImageView {
             let url = URL(string: newImageStringURL)
             
             let processor = DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))
-            |> RoundCornerImageProcessor(cornerRadius: 20)
+            |> RoundCornerImageProcessor(cornerRadius: 10)
             self.kf.indicatorType = .activity
             self.kf.setImage(
                 with: url,
@@ -40,7 +40,7 @@ extension UIImageView {
                 }
             }
         } else {
-            self.image = UIImage(systemName: "nosign.app")
+            self.image = UIImage(named: "NoImage")
             self.tintColor = .fleetioGrey
         }
         
