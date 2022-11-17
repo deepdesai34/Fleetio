@@ -10,13 +10,90 @@ import UIKit
 
 class VehicleTableViewCell: UITableViewCell {
     
+    // stacks
+    let mainVStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        
+        return stack
+    }()
+    
+    let nameStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        
+        return stack
+    }()
+    
+    let makeStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        
+        return stack
+    }()
+    
+    
+    
+    let modelStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        
+        return stack
+    }()
+    
+    let nameTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.text = "Name: "
+        
+        return label
+    }()
+    
+    let makeTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.text = "Make: "
+        
+        return label
+    }()
+    
+    let modelTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .roundedTitleFont(ofSize: 15, weight: .semibold)
+        label.text = "Model: "
+        
+        return label
+    }()
+    
+    
+    
+    let vehicleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 5
+        imageView.backgroundColor = .black
+        
+        return imageView
+    }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        label.adjustsFontSizeToFitWidth = true
+        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
         label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .left
+        label.numberOfLines = 0
         
         return label
     }()
@@ -24,32 +101,25 @@ class VehicleTableViewCell: UITableViewCell {
     let makeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        label.adjustsFontSizeToFitWidth = true
+        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
         label.lineBreakMode = .byWordWrapping
-
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        
         return label
     }()
     
     let modelLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        label.adjustsFontSizeToFitWidth = true
+        label.font = .roundedTitleFont(ofSize: 15, weight: .light)
         label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .right
+        label.textAlignment = .left
+        label.numberOfLines = 0
         
         return label
     }()
     
-    let vehicleImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.layer.cornerRadius = 5
-            imageView.backgroundColor = .black
-    
-            return imageView
-        }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -62,36 +132,54 @@ class VehicleTableViewCell: UITableViewCell {
     }
     
     private func configureViews() {
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(makeLabel)
-        contentView.addSubview(modelLabel)
+        self.accessoryType = .disclosureIndicator
         contentView.addSubview(vehicleImageView)
+        contentView.addSubview(mainVStack)
+        
+        
+        // Name Stack
+        nameStack.addArrangedSubview(nameTitleLabel)
+        nameStack.addArrangedSubview(nameLabel)
+        
+        // Model Stack
+        modelStack.addArrangedSubview(modelTitleLabel)
+        modelStack.addArrangedSubview(modelLabel)
+        
+        // Make Stack
+        makeStack.addArrangedSubview(makeTitleLabel)
+        makeStack.addArrangedSubview(makeLabel)
+        
+        //Main Stack
+        mainVStack.addArrangedSubview(nameStack)
+        mainVStack.addArrangedSubview(makeStack)
+        mainVStack.addArrangedSubview(modelStack)
+        
+        
+        
+        
         
         NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.centerXAnchor)
+            vehicleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            vehicleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            vehicleImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -20),
+            vehicleImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -20),
         ])
+        
         
         NSLayoutConstraint.activate([
-            makeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            makeLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            makeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            mainVStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainVStack.leadingAnchor.constraint(equalTo: vehicleImageView.trailingAnchor, constant: 20),
+            mainVStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainVStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
-        
-        NSLayoutConstraint.activate([
-            modelLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            modelLabel.leadingAnchor.constraint(equalTo: makeLabel.trailingAnchor),
-            modelLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
-        
         
     }
     
+    
     func setup(cellViewModel: VehicleCellViewModel) {
-        nameLabel.text = "Name: " + (cellViewModel.name ?? "NA")
-        makeLabel.text = "Make: " + (cellViewModel.make ?? "N/A")
-        modelLabel.text = "Model: " + (cellViewModel.model ?? "N/A")
+        nameLabel.text =  (cellViewModel.name ?? "NA")
+        makeLabel.text =  (cellViewModel.make ?? "N/A")
+        modelLabel.text = (cellViewModel.model ?? "N/A")
     }
     
     

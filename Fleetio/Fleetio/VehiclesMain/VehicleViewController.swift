@@ -12,7 +12,6 @@ class VehicleViewController: UIViewController {
     //VMs
     let mainVM = MainViewModel()
     
-    
     //UI Variables
     let titleLabel: UILabel = {
         let label = UILabel()
