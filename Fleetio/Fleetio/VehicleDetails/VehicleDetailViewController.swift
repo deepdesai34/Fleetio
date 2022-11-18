@@ -20,7 +20,7 @@ class VehicleDetailViewController: UIViewController {
         table.separatorStyle = .singleLine
         table.separatorColor = .fleetioGreen
         table.tableFooterView?.isHidden = true
-      
+        
         return table
     }()
     
@@ -101,7 +101,7 @@ class VehicleDetailViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: -15),
@@ -149,9 +149,43 @@ extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
         var configuration = cell.defaultContentConfiguration()
         
+        switch indexPath.section {
+            // Meter
+        case 0:
+            if indexPath.row == 0 {
+                configuration.text = "Current Meter"
+                configuration.secondaryText = String(format: "%.2f", detailVM?.currentMeter ?? "N/A")
+            } else {
+                configuration.text = "Secondary Meter"
+                configuration.secondaryText = String(format: "%.2f", detailVM?.secondaryMeter ?? "N/A")
+            }
+            // Vehicle
+        case 1:
+            
+            if indexPath.row == 0 {
+                configuration.text = "ID"
+                configuration.secondaryText = String(format: "%.0f", detailVM?.vehicleStatusID ?? "N/A")
+            } else if indexPath.row == 1 {
+                configuration.text = "Name"
+                configuration.secondaryText = detailVM?.vehicleStatusName ?? "N/A"
+            } else {
+                configuration.text = "Color"
+                configuration.secondaryText = detailVM?.vehicleStatusColor ?? "N/A"
+            }
+            
+        case 2:
+            configuration.text = "Full Name"
+            configuration.secondaryText = detailVM?.driverFullName ?? "N/A"
+        case 3:
+            configuration.text = "Vin"
+            configuration.secondaryText = detailVM?.vin ?? "N/A"
+        case 4:
+            configuration.text = "Plate Number"
+            configuration.secondaryText = detailVM?.licensePlate ?? "N/A"
+        default:
+            return UITableViewCell()
+        }
         
-        configuration.text = "name"
-        configuration.secondaryText = "deep"
         configuration.image = UIImage(named: "InfoIcon")
         
         cell.contentConfiguration = configuration
