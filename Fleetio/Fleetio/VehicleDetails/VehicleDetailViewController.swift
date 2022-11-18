@@ -9,8 +9,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
+//meter/secondary meter values, vehicle status, driver info, VIN, license plate,
+
 class VehicleDetailViewController: UIViewController {
     
+    var detailVM: VehicleDetailViewModel?
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -50,7 +53,32 @@ class VehicleDetailViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell")
         
-        render(latitude: 29.794931, longitude: -95.032926)
+        
+    }
+    
+    func setupMap() {
+        
+        if let long = detailVM?.longitudeDouble, let lat = detailVM?.latitudeDouble {
+            detailVM?.render(latitude: lat, longitude: long)
+        }
+        
+        
+        if let region = detailVM?.region, let coordinates = detailVM?.coordinate {
+            mapView.setRegion(region, animated: true)
+            
+            let pin = MKPointAnnotation()
+            pin.coordinate = coordinates
+            mapView.addAnnotation(pin)
+        }
+        
+        
+        //let region = detailVM?.region,
+        //let coordinates = detailVM?.coordinate,
+    }
+    
+    func bindVM(viewModel: VehicleDetailViewModel) {
+        detailVM = viewModel
+        setupMap()
     }
     
     func configureConstraints() {
@@ -62,33 +90,12 @@ class VehicleDetailViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-           tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-           tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-           tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-           tableView.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: -15),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: -15),
         ])
     }
-
-    
-    func render(latitude: Double, longitude: Double) {
-        
-        let lat = CLLocationDegrees(floatLiteral: latitude)
-        let long = CLLocationDegrees(floatLiteral: longitude)
-        
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        
-        mapView.setRegion(region, animated: true)
-        
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        mapView.addAnnotation(pin)
-        
-    }
-    
 }
 
 

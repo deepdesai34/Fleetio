@@ -5,8 +5,6 @@
 //  Created by Deep Desai on 2022-11-13.
 //
 
-//meter/secondary meter values, vehicle status, driver info, VIN, license plate,
-
 import UIKit
 
 class VehicleViewController: UIViewController {
@@ -183,14 +181,15 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             let vehicle = mainVM.vehicles[indexPath.row]
 
-            let cellVM = VehicleCellViewModel(name: vehicle.name, model: vehicle.model, image: vehicle.defaultImageURLMedium, make: vehicle.make)
+            let cellVM = VehicleCellViewModel(name: vehicle.name, model: vehicle.model, image: vehicle.defaultImageURL, make: vehicle.make)
             
             cell.setup(cellViewModel: cellVM)
+           
         } else {
             
             let searchedVehicle = mainVM.searchedVehicles[indexPath.row]
             
-            let cellVM = VehicleCellViewModel(name: searchedVehicle.name, model: searchedVehicle.model, image: searchedVehicle.defaultImageURLMedium, make: searchedVehicle.make)
+            let cellVM = VehicleCellViewModel(name: searchedVehicle.name, model: searchedVehicle.model, image: searchedVehicle.defaultImageURL, make: searchedVehicle.make)
             cell.setup(cellViewModel: cellVM)
         }
         
@@ -226,9 +225,14 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             
-            let vehicleName = mainVM.vehicles[indexPath.row].name
-            let vehicleLongitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
-            let vehicleLatitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
+            let vehicle = mainVM.vehicles[indexPath.row]
+//            let vehicleName = mainVM.vehicles[indexPath.row].name
+//            let vehicleLongitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
+//            let vehicleLatitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
+            
+            let detailVM = VehicleDetailViewModel(longitudeDouble: vehicle.currentLocationEntry?.geolocation?.longitude, latitudeDouble: vehicle.currentLocationEntry?.geolocation?.latitude)
+            
+            detailVC.bindVM(viewModel: detailVM)
             
             self.present(navController, animated: true)
             
