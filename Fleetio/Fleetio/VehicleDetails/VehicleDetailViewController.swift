@@ -14,15 +14,13 @@ class VehicleDetailViewController: UIViewController {
     var detailVM: VehicleDetailViewModel?
     
     let tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: CGRect(), style: .insetGrouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
         table.separatorColor = .fleetioGreen
         table.tableFooterView?.isHidden = true
-        table.layer.borderColor = UIColor.fleetioGreen.cgColor
-        table.layer.borderWidth = 0.5
-        
+      
         return table
     }()
     
@@ -114,15 +112,43 @@ class VehicleDetailViewController: UIViewController {
 
 extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            return 3
+        default:
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Meter Info"
+        case 1:
+            return "Vehicle Status"
+        case 2:
+            return "Driver Info"
+        case 3:
+            return "vin"
+        case 4:
+            return "licensePlate"
+        default:
+            return ""
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
         var configuration = cell.defaultContentConfiguration()
+        
         
         configuration.text = "name"
         configuration.secondaryText = "deep"
