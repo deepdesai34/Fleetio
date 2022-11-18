@@ -19,8 +19,9 @@ class VehicleDetailViewController: UIViewController {
         table.clipsToBounds = true
         table.separatorStyle = .singleLine
         table.separatorColor = .fleetioGreen
-        table.sectionIndexColor = .white
         table.tableFooterView?.isHidden = true
+        table.layer.borderColor = UIColor.fleetioGreen.cgColor
+        table.layer.borderWidth = 0.5
         
         return table
     }()
@@ -34,6 +35,15 @@ class VehicleDetailViewController: UIViewController {
         return mapView
     }()
     
+    let emptyMapImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "mappin.slash.circle")
+        imageView.tintColor = .fleetioGreen
+        
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -43,6 +53,7 @@ class VehicleDetailViewController: UIViewController {
     func configureView() {
         view.backgroundColor = .white
         view.addSubview(tableView)
+        view.addSubview(emptyMapImage)
         view.addSubview(mapView)
         
         tableView.dataSource = self
@@ -59,15 +70,14 @@ class VehicleDetailViewController: UIViewController {
             detailVM?.render(latitude: lat, longitude: long)
         }
         
-        
         if let region = detailVM?.region, let coordinates = detailVM?.coordinate {
             mapView.setRegion(region, animated: true)
             
             let pin = MKPointAnnotation()
             pin.coordinate = coordinates
             mapView.addAnnotation(pin)
-            
-            
+        } else {
+            mapView.isHidden = true
         }
     }
     
@@ -77,6 +87,14 @@ class VehicleDetailViewController: UIViewController {
     }
     
     func configureConstraints() {
+        
+        NSLayoutConstraint.activate([
+            emptyMapImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 25),
+            emptyMapImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
+            emptyMapImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
+            emptyMapImage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+        ])
+        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 15),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
@@ -110,8 +128,8 @@ extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSourc
         configuration.secondaryText = "deep"
         configuration.image = UIImage(named: "InfoIcon")
         
-        
         cell.contentConfiguration = configuration
+        cell.selectionStyle = .none
         
         return cell
     }

@@ -11,20 +11,46 @@ import MapKit
 
 class VehicleDetailViewModel {
     
+    // Vehicle Info
+    
+    // Meter Values
+    var currentMeter: Double?
+    var secondaryMeter: Double?
+    
+    //Vehicle Status
+    var vehicleStatusID: Double?
+    var vehicleStatusName: String?
+    var vehicleStatusColor: String?
+    
+    // Driver Info
+    var driverFullName: String?
+    
+    // Vin
+    var vin: String?
+    
+    //License Plate
+    var licensePlate: String?
+    
+    // Map Info
     var coordinate: CLLocationCoordinate2D?
     var region: MKCoordinateRegion?
     var longitudeDouble: Double?
     var latitudeDouble: Double?
+    
     private var latitude: CLLocationDegrees?
     private var longitude: CLLocationDegrees?
     
-    init(coordinate: CLLocationCoordinate2D? = nil, region: MKCoordinateRegion? = nil, longitudeDouble: Double?, latitudeDouble: Double?, latitude: CLLocationDegrees? = nil, longitude: CLLocationDegrees? = nil) {
-        self.coordinate = coordinate
-        self.region = region
-        self.longitudeDouble = longitudeDouble
-        self.latitudeDouble = latitudeDouble
-        self.latitude = latitude
-        self.longitude = longitude
+    private var vehicle: Vehicle?
+    
+    init(vehicle: Vehicle) {
+        self.vehicle = vehicle
+        
+        //Map
+        latitudeDouble = vehicle.currentLocationEntry?.geolocation?.latitude
+        longitudeDouble = vehicle.currentLocationEntry?.geolocation?.longitude
+        
+        
+        
     }
     
     func render(latitude: Double, longitude: Double) {
@@ -45,8 +71,6 @@ class VehicleDetailViewModel {
         }
         
     }
-    
-    
     
 }
 

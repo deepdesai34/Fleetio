@@ -227,7 +227,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             
             let vehicle = mainVM.vehicles[indexPath.row]
             
-            let detailVM = VehicleDetailViewModel(longitudeDouble: vehicle.currentLocationEntry?.geolocation?.longitude, latitudeDouble: vehicle.currentLocationEntry?.geolocation?.latitude)
+            let detailVM = VehicleDetailViewModel(vehicle: vehicle)
             
             detailVC.bindVM(viewModel: detailVM)
             
@@ -237,7 +237,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             
             let searched =  mainVM.searchedVehicles[indexPath.row]
             
-            let detailVM = VehicleDetailViewModel(longitudeDouble: searched.currentLocationEntry?.geolocation?.longitude, latitudeDouble: searched.currentLocationEntry?.geolocation?.latitude)
+            let detailVM = VehicleDetailViewModel(vehicle: searched)
             
             detailVC.bindVM(viewModel: detailVM)
             
@@ -252,7 +252,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     // Footer spinner
     private func createFooterSpinner() -> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width - 15, height: 50))
         
         let spinner = UIActivityIndicatorView()
         spinner.center = footerView.center
