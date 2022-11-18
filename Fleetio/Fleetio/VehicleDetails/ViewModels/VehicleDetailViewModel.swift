@@ -49,7 +49,25 @@ class VehicleDetailViewModel {
         latitudeDouble = vehicle.currentLocationEntry?.geolocation?.latitude
         longitudeDouble = vehicle.currentLocationEntry?.geolocation?.longitude
         
+        // vehicle info
         
+        //meter values
+        currentMeter = vehicle.currentMeterValue
+        secondaryMeter = vehicle.secondaryMeterValue
+        
+        // vehicle status
+        vehicleStatusID = vehicle.vehicleStatusID
+        vehicleStatusName = vehicle.vehicleStatusName
+        vehicleStatusColor = vehicle.vehicleStatusColor
+        
+        //Driver info
+        driverFullName = vehicle.driver?.fullName
+        
+        //vin
+        vin = vehicle.vin
+        
+        //license
+        licensePlate = vehicle.licensePlate
         
     }
     
