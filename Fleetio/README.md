@@ -1,5 +1,7 @@
 # Fleetio Take Home Application
 
+## Project is built using MVVM Design Pattern
+
 ## Basic Implementations
 
 ### 1. Created Pagination on Main View:
