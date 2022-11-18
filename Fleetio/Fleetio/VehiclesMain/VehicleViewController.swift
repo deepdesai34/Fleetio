@@ -5,6 +5,8 @@
 //  Created by Deep Desai on 2022-11-13.
 //
 
+//meter/secondary meter values, vehicle status, driver info, VIN, license plate,
+
 import UIKit
 
 class VehicleViewController: UIViewController {
@@ -75,7 +77,7 @@ class VehicleViewController: UIViewController {
         
         // TableView
         view.addSubview(tableView)
-        tableView.register(VehicleTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(VehicleTableViewCell.self, forCellReuseIdentifier: "MainCell")
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -170,7 +172,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
+        guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
        
         cell.selectionStyle = .none
         
@@ -179,22 +181,16 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         }
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
+            let vehicle = mainVM.vehicles[indexPath.row]
+
+            let cellVM = VehicleCellViewModel(name: vehicle.name, model: vehicle.model, image: vehicle.defaultImageURLMedium, make: vehicle.make)
             
-            let vehicleName = mainVM.vehicles[indexPath.row].name
-            let vehicleMake = mainVM.vehicles[indexPath.row].make
-            let vehicleModel = mainVM.vehicles[indexPath.row].model
-            let vehicleImage = mainVM.vehicles[indexPath.row].defaultImageURL
-            
-            let cellVM = VehicleCellViewModel(name: vehicleName, model: vehicleModel, image: vehicleImage, make: vehicleMake)
             cell.setup(cellViewModel: cellVM)
         } else {
             
-            let searchedName = mainVM.searchedVehicles[indexPath.row].name
-            let searchedMake = mainVM.searchedVehicles[indexPath.row].make
-            let searchedModel = mainVM.searchedVehicles[indexPath.row].model
-            let vehicleImage = mainVM.searchedVehicles[indexPath.row].defaultImageURL
+            let searchedVehicle = mainVM.searchedVehicles[indexPath.row]
             
-            let cellVM = VehicleCellViewModel(name: searchedName, model: searchedModel, image: vehicleImage, make: searchedMake)
+            let cellVM = VehicleCellViewModel(name: searchedVehicle.name, model: searchedVehicle.model, image: searchedVehicle.defaultImageURLMedium, make: searchedVehicle.make)
             cell.setup(cellViewModel: cellVM)
         }
         
@@ -226,7 +222,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         let detailVC = VehicleDetailViewController()
         let navController = UINavigationController(rootViewController: detailVC)
         
-        navController.title = "yo"
+        detailVC.title = "Vehicle Details & Location"
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             

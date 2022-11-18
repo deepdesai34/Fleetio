@@ -11,6 +11,21 @@ import CoreLocation
 
 class VehicleDetailViewController: UIViewController {
     
+    
+    let tableView: UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.clipsToBounds = true
+        table.separatorStyle = .singleLine
+        table.separatorColor = .fleetioGreen
+        table.sectionIndexColor = .white
+        table.tableFooterView?.isHidden = true
+        
+        
+        return table
+    }()
+    
+    
     let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +42,13 @@ class VehicleDetailViewController: UIViewController {
     
     func configureView() {
         view.backgroundColor = .white
+        view.addSubview(tableView)
         view.addSubview(mapView)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell")
         
         render(latitude: 29.794931, longitude: -95.032926)
     }
@@ -39,7 +60,15 @@ class VehicleDetailViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
         ])
+        
+        NSLayoutConstraint.activate([
+           tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+           tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+           tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+           tableView.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: -15),
+        ])
     }
+
     
     func render(latitude: Double, longitude: Double) {
         
@@ -63,4 +92,25 @@ class VehicleDetailViewController: UIViewController {
 }
 
 
-
+extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
+        var configuration = cell.defaultContentConfiguration()
+        
+        configuration.text = "name"
+        configuration.secondaryText = "deep"
+        configuration.image = UIImage(named: "InfoIcon")
+        
+        
+        cell.contentConfiguration = configuration
+        
+        return cell
+    }
+}

@@ -93,7 +93,6 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
-        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -105,7 +104,6 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
-        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -117,7 +115,6 @@ class VehicleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
-        label.textColor = .fleetioGreen
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
