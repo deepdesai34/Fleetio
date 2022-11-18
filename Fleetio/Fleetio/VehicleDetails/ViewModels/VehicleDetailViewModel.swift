@@ -37,6 +37,9 @@ class VehicleDetailViewModel {
     var longitudeDouble: Double?
     var latitudeDouble: Double?
     
+    // Private variables
+    
+    // CLLocation info
     private var latitude: CLLocationDegrees?
     private var longitude: CLLocationDegrees?
     
@@ -71,6 +74,7 @@ class VehicleDetailViewModel {
         
     }
     
+    // Binds data from api to the map
     func render(latitude: Double, longitude: Double) {
         
         self.latitude = CLLocationDegrees(floatLiteral: latitude)

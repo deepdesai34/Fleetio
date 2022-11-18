@@ -8,8 +8,8 @@
 import Foundation
 
 struct ApiManager {
+    // Api Request Object Creation
     func getMutableRequest(section: String) -> NSMutableURLRequest {
-        
         guard let url = NSURL(string: "https://secure.fleetio.com/api/v1/\(section)") as? URL else { return NSMutableURLRequest() }
         
         let request = NSMutableURLRequest(url:  url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)

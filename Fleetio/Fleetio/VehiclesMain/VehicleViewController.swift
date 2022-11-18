@@ -17,7 +17,6 @@ class VehicleViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.roundedTitleFont(ofSize: 30, weight: .bold)
-        label.textColor = .fleetioGreen
         label.text = "Vehicles"
         
         return label
@@ -112,8 +111,8 @@ class VehicleViewController: UIViewController {
         
     }
     
+    // Binding data for vehicles from viewModel to view
     func configureVMFetch(pagination: Bool, reloadData: Bool = true) {
-        // Binding data for vehicles from viewModel to view
         mainVM.fetchData(pagination: pagination, completion: { result in
             switch result {
             case .success(let data):
@@ -162,10 +161,12 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        // return vehicle array count without search
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             return mainVM.vehicles.count
         } else {
             
+            // return vehicle array count with search
             if mainVM.searchedVehicles.count == 0 {
                 tableView.setEmptyMessage("No Search Results Found!")
             } else {
@@ -181,11 +182,8 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         guard let cell: VehicleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? VehicleTableViewCell else { return UITableViewCell() }
        
         cell.selectionStyle = .none
-        
-        // Empty State
-    
-        
-        
+
+        // configure cell without search
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             let vehicle = mainVM.vehicles[indexPath.row]
 
@@ -193,6 +191,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             
             cell.setup(cellViewModel: cellVM)
            
+            // configure cell with search
         } else {
             
             let searchedVehicle = mainVM.searchedVehicles[indexPath.row]
@@ -204,11 +203,12 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return cell
     }
     
-    
+    // footer which will have spinner
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 30
     }
     
+    // Checking for if the user is at the bottom of the list. Once they pull +1 row at the bottom, a spinner will show up and the next page will load for data
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if indexPath.row + 1 == mainVM.vehicles.count {
@@ -225,6 +225,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         }
     }
     
+    // Activating details view on row selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = VehicleDetailViewController()
         let navController = UINavigationController(rootViewController: detailVC)
@@ -253,6 +254,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         }
     }
     
+    // We want a consistent height for rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }

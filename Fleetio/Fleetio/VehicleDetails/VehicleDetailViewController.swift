@@ -10,8 +10,11 @@ import MapKit
 import CoreLocation
 
 class VehicleDetailViewController: UIViewController {
-    
+   
+    // Vehicle Detail ViewModel
     var detailVM: VehicleDetailViewModel?
+    
+    // Views
     
     let tableView: UITableView = {
         let table = UITableView(frame: CGRect(), style: .insetGrouped)
@@ -48,6 +51,8 @@ class VehicleDetailViewController: UIViewController {
         configureConstraints()
     }
     
+    // Table Configuration
+    
     func configureView() {
         view.backgroundColor = .white
         view.addSubview(tableView)
@@ -58,10 +63,9 @@ class VehicleDetailViewController: UIViewController {
         tableView.delegate = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell")
-        
-        
     }
     
+    // Map Configuration
     func setupMap() {
         
         if let long = detailVM?.longitudeDouble, let lat = detailVM?.latitudeDouble {
@@ -79,11 +83,13 @@ class VehicleDetailViewController: UIViewController {
         }
     }
     
+    // ViewModel Configuration
     func bindVM(viewModel: VehicleDetailViewModel) {
         detailVM = viewModel
         setupMap()
     }
     
+    // Constraint Configuration
     func configureConstraints() {
         
         NSLayoutConstraint.activate([
@@ -112,10 +118,12 @@ class VehicleDetailViewController: UIViewController {
 
 extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // Number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
     
+    // Number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -127,6 +135,7 @@ extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+    // Titles
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -144,6 +153,7 @@ extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+    // Data binding to views based on ViewModel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
@@ -163,13 +173,13 @@ extension VehicleDetailViewController: UITableViewDelegate, UITableViewDataSourc
         case 1:
             
             if indexPath.row == 0 {
-                configuration.text = "ID"
+                configuration.text = "Vehicle ID"
                 configuration.secondaryText = String(format: "%.0f", detailVM?.vehicleStatusID ?? "N/A")
             } else if indexPath.row == 1 {
-                configuration.text = "Name"
+                configuration.text = "Vehicle Name"
                 configuration.secondaryText = detailVM?.vehicleStatusName ?? "N/A"
             } else {
-                configuration.text = "Color"
+                configuration.text = "Vehicle Color"
                 configuration.secondaryText = detailVM?.vehicleStatusColor ?? "N/A"
             }
             

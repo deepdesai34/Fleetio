@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = VehicleViewController()
         window?.makeKeyAndVisible()
+        
+        // Forced Lightmode since there is no darkmode theme for this app
         window?.overrideUserInterfaceStyle = .light
     }
 

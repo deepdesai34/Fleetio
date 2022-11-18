@@ -11,7 +11,7 @@ import Kingfisher
 
 class VehicleTableViewCell: UITableViewCell {
     
-    // stacks
+    // Main Stack
     let mainVStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -20,6 +20,8 @@ class VehicleTableViewCell: UITableViewCell {
         
         return stack
     }()
+    
+    // Sub Stacks
     
     let nameStack: UIStackView = {
         let stack = UIStackView()
@@ -49,6 +51,9 @@ class VehicleTableViewCell: UITableViewCell {
         
         return stack
     }()
+    
+    
+    // Title Labels
     
     let nameTitleLabel: UILabel = {
         let label = UILabel()
@@ -81,6 +86,7 @@ class VehicleTableViewCell: UITableViewCell {
     }()
     
     
+    // Car Image
     
     let vehicleImageView: UIImageView = {
         let imageView = UIImageView()
@@ -88,6 +94,9 @@ class VehicleTableViewCell: UITableViewCell {
         imageView.backgroundColor = .white
         return imageView
     }()
+    
+    
+    // Value Labels
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -133,6 +142,7 @@ class VehicleTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // View Configuration
     private func configureViews() {
         self.accessoryType = .disclosureIndicator
         self.tintColor = .black
@@ -160,8 +170,7 @@ class VehicleTableViewCell: UITableViewCell {
         mainVStack.addArrangedSubview(modelStack)
         
         
-        
-        
+        // Laying Out Stacks
         
         NSLayoutConstraint.activate([
             vehicleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
@@ -180,7 +189,7 @@ class VehicleTableViewCell: UITableViewCell {
         
     }
     
-    
+    // View Model Configuration
     func setup(cellViewModel: VehicleCellViewModel) {
         nameLabel.text =  (cellViewModel.name ?? "NA")
         makeLabel.text =  (cellViewModel.make ?? "N/A")

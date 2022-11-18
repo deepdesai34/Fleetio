@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Custom Fonts
 extension UIFont {
     static func roundedTitleFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
         let systemFont = UIFont.systemFont(ofSize: fontSize, weight: weight)

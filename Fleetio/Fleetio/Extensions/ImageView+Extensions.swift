@@ -12,8 +12,8 @@ import Kingfisher
 
 extension UIImageView {
     
+    // Downloading Images
     func cacheImage(imageStringURL: String?) {
-        
         if let newImageStringURL = imageStringURL {
             
             let url = URL(string: newImageStringURL)
@@ -23,7 +23,6 @@ extension UIImageView {
             self.kf.indicatorType = .activity
             self.kf.setImage(
                 with: url,
-                placeholder: UIImage(named: "placeholderImage"),
                 options: [
                     .processor(processor),
                     .scaleFactor(UIScreen.main.scale),

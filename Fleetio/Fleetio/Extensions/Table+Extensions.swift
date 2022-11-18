@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UITableView {
-    
+    // Setting Tabel View Message when Empty
     func setEmptyMessage(_ message: String) {
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
         

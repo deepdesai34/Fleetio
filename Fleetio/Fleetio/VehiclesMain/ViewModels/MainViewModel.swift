@@ -10,6 +10,7 @@ import Foundation
 
 class MainViewModel {
     
+    // Public variables
     var isPaginating: Bool = false
     var currentPage: Int = 0
     var totalPages: Int = 0
@@ -25,14 +26,18 @@ class MainViewModel {
     
     
     // Request Functions
+    
     func fetchData(pagination: Bool = false, completion: @escaping (Result<[Vehicle], Error>) -> Void) {
+        // Checks if we want to add new data AKA paginate new data or pull first data
         if pagination {
             isPaginating = true
         }
-        
+
         if self.isPaginating && self.currentPage <= totalPages {
             self.currentPage += 1
         }
+        
+        // pulls first data or new paginated data
         DispatchQueue.global().asyncAfter(deadline: .now(), execute: { [self] in
             
             getVehicles(i: self.currentPage, completion: { oldVehicles in
@@ -53,7 +58,7 @@ class MainViewModel {
         })
     }
     
-    
+    // Pulls details from header for pagination such as current and total pages from vehicles api
     func getHeaderDetails(completion: @escaping (Int, Int) -> ()) {
         apiManager = ApiManager()
         
@@ -74,11 +79,13 @@ class MainViewModel {
     
     // Object Functions
     
+    // resets arrays
     func resetData() {
         originalData.removeAll()
         newData.removeAll()
     }
     
+    // checks if user inputted text matches any of the vehicle names
     func isSearching(searchText: String) -> Bool {
         if !(searching && searchText != "") {
             return false
@@ -87,6 +94,7 @@ class MainViewModel {
         return true
     }
     
+    // filters and creates new array of vehicles based on users search
     func filterSearch(text: String) {
         searchedVehicles = vehicles.filter({
             
@@ -99,11 +107,13 @@ class MainViewModel {
     
     // Private Functions
     
+    // Makes API Request, Decodes JSON into Array of Vehicles
     private func getVehicles(i: Int, completion: @escaping ([Vehicle]) ->()) {
         apiManager = ApiManager()
         
         guard let apiMan = apiManager else { return }
         
+        // Gets vehicle pagination in Ascending order by vehicle name
         let request = apiMan.getMutableRequest(section: "vehicles?page=\(i)?q[s]=name+asc")
         request.httpMethod = "GET"
         
