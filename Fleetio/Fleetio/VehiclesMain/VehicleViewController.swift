@@ -48,8 +48,7 @@ class VehicleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.largeContentImage = UIImage(systemName: "clock.arrow.2.circlepath")
-        bindHeaderDetails()
+        bindPaginationDetails()
         configureViews()
         configureConstraints()
         
@@ -60,9 +59,11 @@ class VehicleViewController: UIViewController {
         configureVMFetch(pagination: false)
     }
     
+    // View Configuration
     func configureViews() {
-        
+        // empty state for initial data load
         tableView.setEmptyMessage("Loading ...")
+        
         //MainView
         view.backgroundColor = .white
         
@@ -79,6 +80,7 @@ class VehicleViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Refresh controller for table
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.tintColor = .fleetioGreen
         tableView.refreshControl?.addTarget(self, action: #selector(pullDownToRefresh), for: .valueChanged)
@@ -87,7 +89,6 @@ class VehicleViewController: UIViewController {
     func configureConstraints() {
         
         //TitleLabel
-        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -112,7 +113,7 @@ class VehicleViewController: UIViewController {
     }
     
     func configureVMFetch(pagination: Bool, reloadData: Bool = true) {
-        // Binding data for vehicles from viewModel
+        // Binding data for vehicles from viewModel to view
         mainVM.fetchData(pagination: pagination, completion: { result in
             switch result {
             case .success(let data):
@@ -129,8 +130,8 @@ class VehicleViewController: UIViewController {
         })
     }
     
-    func bindHeaderDetails(isRefresh: Bool = false) {
-        
+    //Binding header details for pagination
+    func bindPaginationDetails(isRefresh: Bool = false) {
         if isRefresh {
             self.mainVM.currentPage = 0
         }
@@ -141,6 +142,7 @@ class VehicleViewController: UIViewController {
         })
     }
     
+    // refresh for when pulling down ( reloading table )
     @objc func pullDownToRefresh() {
         tableView.tableFooterView = nil
         tableView.restore()
@@ -148,7 +150,7 @@ class VehicleViewController: UIViewController {
         mainVM.searchedVehicles.removeAll()
         tableView.setNeedsDisplay()
         mainVM.resetData()
-        bindHeaderDetails(isRefresh: true)
+        bindPaginationDetails(isRefresh: true)
         configureVMFetch(pagination: false, reloadData: true)
         tableView.reloadData()
         
@@ -163,6 +165,12 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             return mainVM.vehicles.count
         } else {
+            
+            if mainVM.searchedVehicles.count == 0 {
+                tableView.setEmptyMessage("No Search Results Found!")
+            } else {
+                tableView.restore()
+            }
             return mainVM.searchedVehicles.count
             
         }
@@ -174,9 +182,9 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
        
         cell.selectionStyle = .none
         
-        if mainVM.searchedVehicles.isEmpty {
-            self.tableView.setEmptyMessage("No Search results!")
-        }
+        // Empty State
+    
+        
         
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             let vehicle = mainVM.vehicles[indexPath.row]
