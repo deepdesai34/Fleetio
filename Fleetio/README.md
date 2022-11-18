@@ -3,8 +3,8 @@
 ## Basic Implementations
 
 ### 1. Created Pagination on Main View:
--Vehicles Data pulled with all required info displayed 
--When use scrolls all the way down the table and pulls, a Spinner will appear at the bottom and new paginated data will load
+- Vehicles Data pulled with all required info displayed 
+- When use scrolls all the way down the table and pulls, a Spinner will appear at the bottom and new paginated data will load
 
 ### 2. Display functional map based on current vehicle location, with a pin. This is displayed on the details page when user selects a row
 
