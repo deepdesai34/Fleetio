@@ -53,9 +53,9 @@ class VehicleTableViewCell: UITableViewCell {
     let nameTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .black
-        label.text = "Name: "
+        label.text = "Name"
         
         return label
     }()
@@ -63,9 +63,9 @@ class VehicleTableViewCell: UITableViewCell {
     let makeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .black
-        label.text = "Make: "
+        label.text = "Make"
         
         return label
     }()
@@ -73,9 +73,9 @@ class VehicleTableViewCell: UITableViewCell {
     let modelTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .bold)
+        label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .black
-        label.text = "Model: "
+        label.text = "Model"
         
         return label
     }()
@@ -92,7 +92,7 @@ class VehicleTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.font = .systemFont(ofSize: 15)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -103,7 +103,7 @@ class VehicleTableViewCell: UITableViewCell {
     let makeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.font = .systemFont(ofSize: 15)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -114,7 +114,7 @@ class VehicleTableViewCell: UITableViewCell {
     let modelLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .roundedTitleFont(ofSize: 15, weight: .regular)
+        label.font = .systemFont(ofSize: 15)
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -164,10 +164,10 @@ class VehicleTableViewCell: UITableViewCell {
         
         
         NSLayoutConstraint.activate([
-            vehicleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            vehicleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
-            vehicleImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -40),
-            vehicleImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -20),
+            vehicleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            vehicleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            vehicleImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -30),
+            vehicleImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
         ])
         
         
