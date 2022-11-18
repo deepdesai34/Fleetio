@@ -9,8 +9,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-//meter/secondary meter values, vehicle status, driver info, VIN, license plate,
-
 class VehicleDetailViewController: UIViewController {
     
     var detailVM: VehicleDetailViewModel?
@@ -23,7 +21,6 @@ class VehicleDetailViewController: UIViewController {
         table.separatorColor = .fleetioGreen
         table.sectionIndexColor = .white
         table.tableFooterView?.isHidden = true
-        
         
         return table
     }()
@@ -69,11 +66,9 @@ class VehicleDetailViewController: UIViewController {
             let pin = MKPointAnnotation()
             pin.coordinate = coordinates
             mapView.addAnnotation(pin)
+            
+            
         }
-        
-        
-        //let region = detailVM?.region,
-        //let coordinates = detailVM?.coordinate,
     }
     
     func bindVM(viewModel: VehicleDetailViewModel) {

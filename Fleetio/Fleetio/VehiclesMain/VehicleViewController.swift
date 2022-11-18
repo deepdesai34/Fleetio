@@ -226,9 +226,6 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if !mainVM.isSearching(searchText: vehicleSearchBar.text ?? "") {
             
             let vehicle = mainVM.vehicles[indexPath.row]
-//            let vehicleName = mainVM.vehicles[indexPath.row].name
-//            let vehicleLongitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
-//            let vehicleLatitude = mainVM.vehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
             
             let detailVM = VehicleDetailViewModel(longitudeDouble: vehicle.currentLocationEntry?.geolocation?.longitude, latitudeDouble: vehicle.currentLocationEntry?.geolocation?.latitude)
             
@@ -238,9 +235,11 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource, UIS
             
         } else {
             
-            let searchedName = mainVM.searchedVehicles[indexPath.row].name
-            let searchedLongitude = mainVM.searchedVehicles[indexPath.row].currentLocationEntry?.geolocation?.longitude
-            let searchedLatitude = mainVM.searchedVehicles[indexPath.row].currentLocationEntry?.geolocation?.latitude
+            let searched =  mainVM.searchedVehicles[indexPath.row]
+            
+            let detailVM = VehicleDetailViewModel(longitudeDouble: searched.currentLocationEntry?.geolocation?.longitude, latitudeDouble: searched.currentLocationEntry?.geolocation?.latitude)
+            
+            detailVC.bindVM(viewModel: detailVM)
             
             self.present(navController, animated: true)
         }
